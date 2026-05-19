@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CourseProgress from "../components/CourseProgress.astro";
+import HomePreview from "../components/HomePreview.astro";
+import TopicCard from "../components/TopicCard.astro";
+import topics from "../data/topics.json";
+
+const sortedTopics = [...topics].sort((a, b) => a.order - b.order);
+const readyTopics = sortedTopics.filter((topic) => topic.status === "ready");
+const beginnerTopics = readyTopics.filter((topic) => topic.difficulty === "Beginner");
+const intermediateTopics = readyTopics.filter((topic) => topic.difficulty === "Intermediate");
+const advancedTopics = readyTopics.filter((topic) => topic.difficulty === "Advanced");
+const plannedTopics = sortedTopics.filter((topic) => topic.status !== "ready");
+const beginnerStart = beginnerTopics[0];
+const intermediateStart = intermediateTopics[0];
+const advancedStart = advancedTopics[0];
+---
+
+<BaseLayout
+  title="QuizNiva"
+  description="Free Python beginner, intermediate, and advanced notes, MCQ quizzes, answer explanations, and progress-friendly practice."
+>
+  <section class="home-hero section">
+    <div class="home-hero__copy">
+      <p class="eyebrow">Python practice path</p>
+      <h1>QuizNiva</h1>
+      <p>
+        Move from beginner Python foundations into intermediate patterns and advanced concepts with notes, focused MCQs, and answer explanations.
+      </p>
+      <div class="button-row">
+        <a class="button button--primary" href="/python/variables" data-progress-continue-link>Start Python Variables</a>
+        <a class="button button--ghost" href="/python">View course</a>
+      </div>
+    </div>
+    <HomePreview />
+  </section>
+
+  <CourseProgress topics={readyTopics} />
+
+  <section class="section section--tight" aria-labelledby="ready-title">
+    <div class="section-heading">
+      <p class="eyebrow">Study paths</p>
+      <h2 id="ready-title">Choose Your Python Level</h2>
+      <p>Start with foundations, jump into intermediate practice, or sharpen advanced Python skills. The full lesson list lives on the Python course page.</p>
+    </div>
+
+    <div class="course-level-grid">
+      <article class="course-level-card">
+        <p class="eyebrow">Beginner</p>
+        <h3>Python Foundations</h3>
+        <p>Variables, data types, input/output, conditions, loops, strings, lists, functions, dictionaries, and basic errors.</p>
+        <div class="course-level-card__meta">
+          <span>{beginnerTopics.length} lessons</span>
+          <span>{beginnerTopics.length * 20} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={beginnerStart?.contentUrl ?? "/python"}>Start beginner</a>
+          <a class="button button--ghost" href="/python">View syllabus</a>
+        </div>
+      </article>
+
+      <article class="course-level-card">
+        <p class="eyebrow">Intermediate</p>
+        <h3>Practical Python Patterns</h3>
+        <p>Tuples, sets, comprehensions, files, exceptions, modules, OOP, inheritance, functional helpers, generators, and decorators.</p>
+        <div class="course-level-card__meta">
+          <span>{intermediateTopics.length} lessons</span>
+          <span>{intermediateTopics.length * 20} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={intermediateStart?.contentUrl ?? "/python"}>Start intermediate</a>
+          <a class="button button--ghost" href="/python">View syllabus</a>
+        </div>
+      </article>
+
+      <article class="course-level-card">
+        <p class="eyebrow">Advanced</p>
+        <h3>Professional Python Tools</h3>
+        <p>Closures, context managers, regex, dataclasses, type hints, testing, async, concurrency, serialization, and debugging.</p>
+        <div class="course-level-card__meta">
+          <span>{advancedTopics.length} lessons</span>
+          <span>{advancedTopics.length * 20} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={advancedStart?.contentUrl ?? "/python"}>Start advanced</a>
+          <a class="button button--ghost" href="/python">View syllabus</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  {plannedTopics.length > 0 && (
+    <section class="section section--muted" aria-labelledby="roadmap-title">
+      <div class="section-heading">
+        <p class="eyebrow">Build queue</p>
+        <h2 id="roadmap-title">Python Beginner Roadmap</h2>
+        <p>These topics are planned next. We will add each only after its notes and quiz explanations are ready.</p>
+      </div>
+
+      <div class="topic-grid">
+        {plannedTopics.map((topic) => <TopicCard topic={topic} />)}
+      </div>
+    </section>
+  )}
+</BaseLayout>

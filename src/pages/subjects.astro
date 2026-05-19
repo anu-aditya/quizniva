@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Subjects"
+  description="Browse available QuizNiva subjects and topic collections."
+  currentPath="/subjects"
+>
+  <section class="page-intro section">
+    <p class="eyebrow">Subjects</p>
+    <h1>Choose A Study Path</h1>
+    <p>Start with Python foundations, then continue into intermediate and advanced practice with notes and MCQs.</p>
+  </section>
+
+  <section class="section section--tight">
+    <div class="subject-list">
+      <a class="subject-row" href="/python">
+        <div>
+          <h2>Python Beginner To Advanced</h2>
+          <p>Short notes, code examples, MCQs, and answer explanations from core basics to advanced Python tools.</p>
+        </div>
+        <span>Open</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

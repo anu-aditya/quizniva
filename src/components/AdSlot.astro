@@ -1,0 +1,5 @@
+---
+const { enabled = false, label = "Advertisement" } = Astro.props;
+---
+
+{enabled ? <aside class="ad-slot" aria-label={label}></aside> : null}

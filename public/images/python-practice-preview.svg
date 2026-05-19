@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">Python lesson and quiz preview</title>
+  <desc id="desc">A study screen with Python notes, code examples, and a quiz card.</desc>
+  <rect width="760" height="520" fill="#eef8f5"/>
+  <rect x="44" y="44" width="672" height="432" rx="8" fill="#ffffff" stroke="#cddbd7" stroke-width="2"/>
+  <rect x="44" y="44" width="672" height="54" rx="8" fill="#102a2a"/>
+  <circle cx="82" cy="71" r="8" fill="#ff6b5a"/>
+  <circle cx="108" cy="71" r="8" fill="#ffb84d"/>
+  <circle cx="134" cy="71" r="8" fill="#29b586"/>
+  <text x="174" y="78" fill="#d7fff2" font-family="Arial, sans-serif" font-size="18">QuizNiva / Python Variables</text>
+  <rect x="82" y="132" width="278" height="270" rx="8" fill="#f7fbfa" stroke="#d8e4e1"/>
+  <text x="108" y="170" fill="#102a2a" font-family="Arial, sans-serif" font-size="24" font-weight="700">Variables</text>
+  <text x="108" y="205" fill="#375453" font-family="Arial, sans-serif" font-size="16">A name that stores a value.</text>
+  <rect x="108" y="232" width="214" height="88" rx="8" fill="#102a2a"/>
+  <text x="128" y="266" fill="#d7fff2" font-family="Consolas, monospace" font-size="18">score = 10</text>
+  <text x="128" y="296" fill="#ffcf73" font-family="Consolas, monospace" font-size="18">name = "Asha"</text>
+  <rect x="108" y="348" width="110" height="14" rx="7" fill="#29b586"/>
+  <rect x="108" y="372" width="180" height="14" rx="7" fill="#cddbd7"/>
+  <rect x="400" y="132" width="278" height="270" rx="8" fill="#fffaf0" stroke="#ead7ac"/>
+  <text x="426" y="170" fill="#102a2a" font-family="Arial, sans-serif" font-size="24" font-weight="700">Quick Quiz</text>
+  <text x="426" y="205" fill="#375453" font-family="Arial, sans-serif" font-size="16">Which operator assigns a value?</text>
+  <rect x="426" y="232" width="204" height="42" rx="8" fill="#ffffff" stroke="#29b586" stroke-width="3"/>
+  <text x="448" y="259" fill="#102a2a" font-family="Arial, sans-serif" font-size="17">=</text>
+  <rect x="426" y="286" width="204" height="42" rx="8" fill="#ffffff" stroke="#ead7ac"/>
+  <text x="448" y="313" fill="#102a2a" font-family="Arial, sans-serif" font-size="17">==</text>
+  <rect x="426" y="340" width="204" height="42" rx="8" fill="#ffffff" stroke="#ead7ac"/>
+  <text x="448" y="367" fill="#102a2a" font-family="Arial, sans-serif" font-size="17">-&gt;</text>
+  <path d="M333 429c41 18 93 18 134 0" fill="none" stroke="#29b586" stroke-width="8" stroke-linecap="round"/>
+  <path d="M489 421l-24 13 10-26" fill="#29b586"/>
+</svg>

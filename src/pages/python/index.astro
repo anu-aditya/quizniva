@@ -1,0 +1,233 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
+import topics from "../../data/topics.json";
+
+const pythonTopics = [...topics].sort((a, b) => a.order - b.order);
+const readyTopics = pythonTopics.filter((topic) => topic.status === "ready");
+const beginnerTopics = readyTopics.filter((topic) => topic.difficulty === "Beginner");
+const intermediateTopics = readyTopics.filter((topic) => topic.difficulty === "Intermediate");
+const advancedTopics = readyTopics.filter((topic) => topic.difficulty === "Advanced");
+const beginnerStart = beginnerTopics[0];
+const intermediateStart = intermediateTopics[0];
+const advancedStart = advancedTopics[0];
+---
+
+<BaseLayout
+  title="Python Notes And Quizzes"
+  description="Practice beginner, intermediate, and advanced Python topics with short notes, examples, MCQs, and explanations."
+  currentPath="/python"
+>
+  <section class="page-intro section">
+    <p class="eyebrow">Python Course</p>
+    <h1>Python Notes And MCQ Practice</h1>
+    <p>
+      Follow the topics in order from beginner foundations to intermediate patterns and advanced Python tools. Each lesson has notes, examples, and a matching quiz with explanations for every answer.
+    </p>
+    <div class="button-row">
+      <a class="button button--primary" href={readyTopics[0]?.contentUrl ?? "#"} data-progress-continue-link>Continue learning</a>
+      <a class="button button--ghost" href={intermediateTopics[0]?.contentUrl ?? "#"}>Start intermediate</a>
+      <a class="button button--ghost" href={advancedStart?.contentUrl ?? "#"}>Start advanced</a>
+      <a class="button button--ghost" href={readyTopics[0]?.quizUrl ?? "#"}>Take first quiz</a>
+    </div>
+  </section>
+
+  <CourseProgress topics={readyTopics} />
+
+  <section class="section section--tight" aria-labelledby="topics-title">
+    <div class="section-heading">
+      <p class="eyebrow">Course levels</p>
+      <h2 id="topics-title">Pick A Level</h2>
+      <p>Use these as quick entry points. Expand the syllabus below when you want a specific lesson or quiz.</p>
+    </div>
+
+    <div class="course-level-grid">
+      <article class="course-level-card">
+        <p class="eyebrow">Beginner</p>
+        <h3>Python Foundations</h3>
+        <p>Core syntax and problem-solving basics for learners who want a steady starting path.</p>
+        <div class="course-level-card__meta">
+          <span>{beginnerTopics.length} lessons</span>
+          <span>{beginnerTopics.length * 20} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={beginnerStart?.contentUrl ?? "#"}>Start beginner</a>
+          <a class="button button--ghost" href={beginnerStart?.quizUrl ?? "#"}>First quiz</a>
+        </div>
+      </article>
+
+      <article class="course-level-card">
+        <p class="eyebrow">Intermediate</p>
+        <h3>Practical Python Patterns</h3>
+        <p>More expressive data handling, reusable code structure, OOP, lazy iteration, and decorators.</p>
+        <div class="course-level-card__meta">
+          <span>{intermediateTopics.length} lessons</span>
+          <span>{intermediateTopics.length * 20} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={intermediateStart?.contentUrl ?? "#"}>Start intermediate</a>
+          <a class="button button--ghost" href={intermediateStart?.quizUrl ?? "#"}>First quiz</a>
+        </div>
+      </article>
+
+      <article class="course-level-card">
+        <p class="eyebrow">Advanced</p>
+        <h3>Professional Python Tools</h3>
+        <p>Write more robust programs with advanced functions, context managers, typing, tests, async, concurrency, and profiling.</p>
+        <div class="course-level-card__meta">
+          <span>{advancedTopics.length} lessons</span>
+          <span>{advancedTopics.length * 20} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={advancedStart?.contentUrl ?? "#"}>Start advanced</a>
+          <a class="button button--ghost" href={advancedStart?.quizUrl ?? "#"}>First quiz</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--muted course-index" aria-labelledby="course-index-title">
+    <div class="section-heading">
+      <p class="eyebrow">Syllabus</p>
+      <h2 id="course-index-title">All Lessons And Quizzes</h2>
+      <p>The complete catalog is grouped by level so the page stays short until you need the details.</p>
+    </div>
+
+    <details class="lesson-group">
+      <summary>
+        <span>
+          <strong>Beginner Python</strong>
+          <small>Lessons 1-10: syntax, control flow, collections, functions, and basic errors.</small>
+        </span>
+        <span>{beginnerTopics.length} lessons</span>
+      </summary>
+      <div class="lesson-group__content">
+        <ol class="lesson-list">
+          {beginnerTopics.map((topic) => (
+            <li class="lesson-row" data-topic-id={topic.id}>
+              <a class="lesson-row__main" href={topic.contentUrl}>
+                <span class="lesson-row__order">{topic.order}</span>
+                <span>
+                  <strong>{topic.title}</strong>
+                  <small>{topic.description}</small>
+                  <small class="lesson-row__status" data-progress-status>Not started</small>
+                </span>
+              </a>
+              <a class="lesson-row__quiz" href={topic.quizUrl}>Quiz</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </details>
+
+    <details class="lesson-group">
+      <summary>
+        <span>
+          <strong>Intermediate Python</strong>
+          <small>Lessons 11-20: files, exceptions, modules, OOP, functional helpers, generators, and decorators.</small>
+        </span>
+        <span>{intermediateTopics.length} lessons</span>
+      </summary>
+      <div class="lesson-group__content">
+        <ol class="lesson-list">
+          {intermediateTopics.map((topic) => (
+            <li class="lesson-row" data-topic-id={topic.id}>
+              <a class="lesson-row__main" href={topic.contentUrl}>
+                <span class="lesson-row__order">{topic.order}</span>
+                <span>
+                  <strong>{topic.title}</strong>
+                  <small>{topic.description}</small>
+                  <small class="lesson-row__status" data-progress-status>Not started</small>
+                </span>
+              </a>
+              <a class="lesson-row__quiz" href={topic.quizUrl}>Quiz</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </details>
+
+    <details class="lesson-group">
+      <summary>
+        <span>
+          <strong>Advanced Python</strong>
+          <small>Lessons 21-30: functions, context managers, regex, typing, testing, async, concurrency, serialization, and debugging.</small>
+        </span>
+        <span>{advancedTopics.length} lessons</span>
+      </summary>
+      <div class="lesson-group__content">
+        <ol class="lesson-list">
+          {advancedTopics.map((topic) => (
+            <li class="lesson-row" data-topic-id={topic.id}>
+              <a class="lesson-row__main" href={topic.contentUrl}>
+                <span class="lesson-row__order">{topic.order}</span>
+                <span>
+                  <strong>{topic.title}</strong>
+                  <small>{topic.description}</small>
+                  <small class="lesson-row__status" data-progress-status>Not started</small>
+                </span>
+              </a>
+              <a class="lesson-row__quiz" href={topic.quizUrl}>Quiz</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </details>
+  </section>
+
+  <script>
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    document.querySelectorAll(".lesson-group").forEach((group) => {
+      const summary = group.querySelector("summary");
+      const content = group.querySelector(".lesson-group__content");
+
+      if (!summary || !(content instanceof HTMLElement)) {
+        return;
+      }
+
+      summary.addEventListener("click", (event) => {
+        if (motionQuery.matches || group.dataset.animating === "true") {
+          return;
+        }
+
+        event.preventDefault();
+        group.open ? closeGroup(group, content) : openGroup(group, content);
+      });
+    });
+
+    function openGroup(group, content) {
+      group.dataset.animating = "true";
+      group.open = true;
+
+      const animation = content.animate(
+        [
+          { height: "0px", opacity: 0 },
+          { height: `${content.scrollHeight}px`, opacity: 1 }
+        ],
+        { duration: 220, easing: "ease" }
+      );
+
+      animation.onfinish = () => {
+        delete group.dataset.animating;
+      };
+    }
+
+    function closeGroup(group, content) {
+      group.dataset.animating = "true";
+
+      const animation = content.animate(
+        [
+          { height: `${content.scrollHeight}px`, opacity: 1 },
+          { height: "0px", opacity: 0 }
+        ],
+        { duration: 180, easing: "ease" }
+      );
+
+      animation.onfinish = () => {
+        group.open = false;
+        delete group.dataset.animating;
+      };
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,217 @@
+---
+const { topics = [] } = Astro.props;
+---
+
+<section class="progress-panel" data-progress-panel aria-live="polite">
+  <div class="progress-panel__copy">
+    <p class="eyebrow">Saved progress</p>
+    <h2 data-progress-title>Welcome back</h2>
+    <p data-progress-copy>Your Python practice progress is saved on this device.</p>
+  </div>
+
+  <div class="progress-meter" aria-hidden="true">
+    <span data-progress-bar></span>
+  </div>
+
+  <div class="progress-panel__stats" aria-label="Saved progress summary">
+    <span><strong data-progress-completed>0</strong> completed</span>
+    <span><strong data-progress-in-progress>0</strong> in progress</span>
+    <span><strong data-progress-attempted>0</strong> attempted</span>
+    <span><strong data-progress-best>0</strong> best score</span>
+  </div>
+
+  <div class="button-row">
+    <a class="button button--primary" href="/python/variables" data-progress-continue>Continue learning</a>
+    <a class="button button--ghost" href="/python" data-progress-practice>Open course</a>
+  </div>
+</section>
+
+<script define:vars={{ courseTopics: topics }}>
+  const STORAGE_KEY = "quizNivaProgress";
+  const DRAFT_STORAGE_KEY = "quizNivaQuizDrafts";
+  const totalQuestionsPerQuiz = 20;
+  const topicsById = new Map(courseTopics.map((topic) => [topic.id, topic]));
+
+  function loadProgress() {
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function loadDrafts() {
+    try {
+      const saved = window.localStorage.getItem(DRAFT_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function getKnownTopic(topicId) {
+    return topicsById.get(topicId) ?? null;
+  }
+
+  function getFallbackTopic() {
+    return courseTopics[0] ?? null;
+  }
+
+  function getAttemptedCount(progress) {
+    return Object.entries(progress.attempts ?? {}).filter(([topicId, count]) => {
+      return topicsById.has(topicId) && Number(count) > 0;
+    }).length;
+  }
+
+  function getCompletedTopics(progress) {
+    return (progress.completedTopics ?? []).filter((topicId) => topicsById.has(topicId));
+  }
+
+  function getVisitedTopics(progress) {
+    return (progress.visitedTopics ?? []).filter((topicId) => topicsById.has(topicId));
+  }
+
+  function draftHasWork(draft) {
+    return Boolean(
+      Object.keys(draft?.selectedAnswers ?? {}).length ||
+      Object.keys(draft?.skippedQuestions ?? {}).length ||
+      Number(draft?.currentIndex ?? 0) > 0
+    );
+  }
+
+  function getInProgressTopics(progress, drafts) {
+    const completed = new Set(getCompletedTopics(progress));
+    const inProgress = new Set();
+
+    getVisitedTopics(progress).forEach((topicId) => {
+      if (!completed.has(topicId)) {
+        inProgress.add(topicId);
+      }
+    });
+
+    Object.entries(drafts).forEach(([topicId, draft]) => {
+      if (topicsById.has(topicId) && !completed.has(topicId) && draftHasWork(draft)) {
+        inProgress.add(topicId);
+      }
+    });
+
+    if (progress.lastVisitedTopic && topicsById.has(progress.lastVisitedTopic) && !completed.has(progress.lastVisitedTopic)) {
+      inProgress.add(progress.lastVisitedTopic);
+    }
+
+    return Array.from(inProgress);
+  }
+
+  function getBestScore(progress) {
+    return Object.entries(progress.bestScores ?? {}).reduce(
+      (best, [topicId, score]) => {
+        if (!topicsById.has(topicId) || Number(score) <= best.score) {
+          return best;
+        }
+
+        return { topic: topicsById.get(topicId), score: Number(score) };
+      },
+      { topic: null, score: 0 }
+    );
+  }
+
+  function updateContinueLinks(topic) {
+    document.querySelectorAll("[data-progress-continue-link]").forEach((link) => {
+      link.href = topic.contentUrl;
+      link.textContent = `Continue: ${topic.title}`;
+    });
+  }
+
+  function updateLessonRows(progress) {
+    const drafts = loadDrafts();
+    const completed = new Set(getCompletedTopics(progress));
+    const inProgress = new Set(getInProgressTopics(progress, drafts));
+    const bestScores = progress.bestScores ?? {};
+    const attempts = progress.attempts ?? {};
+
+    document.querySelectorAll("[data-topic-id]").forEach((row) => {
+      const topicId = row.getAttribute("data-topic-id");
+      const status = row.querySelector("[data-progress-status]");
+      const bestScore = Number(bestScores[topicId] ?? 0);
+      const attemptCount = Number(attempts[topicId] ?? 0);
+      let state = "not-started";
+      let label = "Not started";
+
+      if (completed.has(topicId)) {
+        state = "completed";
+        label = bestScore ? `Completed - best ${bestScore}/${totalQuestionsPerQuiz}` : "Completed";
+      } else if (inProgress.has(topicId)) {
+        state = "in-progress";
+        label = "In progress";
+      } else if (attemptCount > 0) {
+        state = "attempted";
+        label = `Attempted ${attemptCount} time${attemptCount === 1 ? "" : "s"}`;
+      }
+
+      row.dataset.progressState = state;
+      row.classList.toggle("is-completed", state === "completed");
+      row.classList.toggle("is-in-progress", state === "in-progress");
+      row.classList.toggle("is-attempted", state === "attempted");
+
+      if (status) {
+        status.hidden = false;
+        status.textContent = label;
+      }
+    });
+  }
+
+  function renderProgress(progress) {
+    const savedProgress = progress ?? { completedTopics: [], bestScores: {}, attempts: {}, lastVisitedTopic: null, visitedTopics: [] };
+    const drafts = loadDrafts();
+    const panel = document.querySelector("[data-progress-panel]");
+    const completedTopics = getCompletedTopics(savedProgress);
+    const inProgressTopics = getInProgressTopics(savedProgress, drafts);
+    const lastVisitedTopic = getKnownTopic(savedProgress.lastVisitedTopic) ?? getKnownTopic(inProgressTopics[0]) ?? getFallbackTopic();
+    const best = getBestScore(savedProgress);
+    const completionPercent = Math.round((completedTopics.length / courseTopics.length) * 100);
+
+    if (!panel || !lastVisitedTopic) {
+      return;
+    }
+
+    const hasSavedProgress = Boolean(
+      savedProgress.lastVisitedTopic ||
+      completedTopics.length ||
+      inProgressTopics.length ||
+      Object.keys(savedProgress.bestScores ?? {}).length ||
+      Object.keys(savedProgress.attempts ?? {}).length
+    );
+
+    panel.querySelector("[data-progress-title]").textContent = hasSavedProgress ? "Welcome back" : "Your progress";
+    panel.querySelector("[data-progress-copy]").textContent = hasSavedProgress
+      ? `Last visited: ${lastVisitedTopic.title}. You have completed ${completedTopics.length} of ${courseTopics.length} quizzes on this device.`
+      : `Start any lesson or quiz and this device will remember where you left off.`;
+    panel.querySelector("[data-progress-completed]").textContent = `${completedTopics.length}/${courseTopics.length}`;
+    panel.querySelector("[data-progress-in-progress]").textContent = String(inProgressTopics.length);
+    panel.querySelector("[data-progress-attempted]").textContent = String(getAttemptedCount(savedProgress));
+    panel.querySelector("[data-progress-best]").textContent = best.topic
+      ? `${best.score}/${totalQuestionsPerQuiz}`
+      : "0";
+    panel.querySelector("[data-progress-bar]").style.width = `${completionPercent}%`;
+
+    const continueLink = panel.querySelector("[data-progress-continue]");
+    continueLink.href = lastVisitedTopic.contentUrl;
+    continueLink.textContent = hasSavedProgress ? `Continue: ${lastVisitedTopic.title}` : `Start: ${lastVisitedTopic.title}`;
+
+    const practiceLink = panel.querySelector("[data-progress-practice]");
+    practiceLink.href = lastVisitedTopic.quizUrl;
+    practiceLink.textContent = !hasSavedProgress
+      ? "Take first quiz"
+      : completedTopics.includes(lastVisitedTopic.id)
+      ? "Retake last quiz"
+      : "Practice last lesson";
+
+    if (hasSavedProgress) {
+      updateContinueLinks(lastVisitedTopic);
+    }
+    updateLessonRows(savedProgress);
+  }
+
+  renderProgress(loadProgress());
+</script>

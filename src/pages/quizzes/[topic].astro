@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import QuizComponent from "../../components/QuizComponent.jsx";
+import beginnerQuestions from "../../data/questions.json";
+import intermediateQuestions from "../../data/intermediateQuestions.js";
+import advancedQuestions from "../../data/advancedQuestions.js";
+import topics from "../../data/topics.json";
+
+export function getStaticPaths() {
+  const questions = [...beginnerQuestions, ...intermediateQuestions, ...advancedQuestions];
+
+  return topics
+    .filter((topic) => questions.some((question) => question.topicId === topic.id))
+    .map((topic) => ({
+      params: { topic: topic.quizSlug },
+      props: {
+        topic,
+        topicQuestions: questions.filter((question) => question.topicId === topic.id)
+      }
+    }));
+}
+
+const { topic, topicQuestions } = Astro.props;
+const nextTopic = topics
+  .filter((item) => item.status === "ready" && item.order > topic.order)
+  .sort((a, b) => a.order - b.order)[0] ?? null;
+---
+
+<BaseLayout
+  title={`${topic.title} Quiz`}
+  description={`Practice ${topic.title} with MCQs, score calculation, and answer explanations.`}
+  currentPath={topic.quizUrl}
+>
+  <section class="quiz-page section">
+    <div class="quiz-page__intro">
+      <p class="eyebrow">Python quiz</p>
+      <h1>{topic.title} MCQ Practice</h1>
+      <p>
+        Answer all questions, submit once, then review every explanation. No login is needed; your best score is saved only in this browser.
+      </p>
+      <a class="text-link" href={topic.contentUrl}>Read the lesson first</a>
+    </div>
+
+    <QuizComponent client:load topic={topic} questions={topicQuestions} nextTopic={nextTopic} />
+  </section>
+</BaseLayout>

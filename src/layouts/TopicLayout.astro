@@ -1,0 +1,63 @@
+---
+import RelatedTopics from "../components/RelatedTopics.astro";
+
+const { topic, topics } = Astro.props;
+---
+
+<article class="topic-article">
+  <header class="topic-header">
+    <p class="eyebrow">Python {topic.difficulty} Lesson {topic.order}</p>
+    <h1>{topic.title}</h1>
+    <p>{topic.description}</p>
+    <div class="topic-header__actions">
+      <a class="button button--primary" href={topic.quizUrl}>Start quiz</a>
+      <a class="button button--ghost" href="/python">Course index</a>
+    </div>
+  </header>
+
+  <div class="content-grid">
+    <div class="prose">
+      <slot />
+    </div>
+
+    <aside class="study-sidebar" aria-label="Topic details">
+      <div class="sidebar-block">
+        <h2>Lesson Details</h2>
+        <dl>
+          <div>
+            <dt>Level</dt>
+            <dd>{topic.difficulty}</dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd>{topic.estimatedMinutes} minutes</dd>
+          </div>
+          <div>
+            <dt>Practice</dt>
+            <dd>20 MCQs</dd>
+          </div>
+        </dl>
+      </div>
+    </aside>
+  </div>
+
+  <RelatedTopics topics={topics} currentId={topic.id} />
+</article>
+
+<script define:vars={{ topicId: topic.id }}>
+  try {
+    const key = "quizNivaProgress";
+    const saved = window.localStorage.getItem(key);
+    const progress = saved
+      ? JSON.parse(saved)
+      : { completedTopics: [], bestScores: {}, attempts: {}, lastVisitedTopic: null };
+    const visitedTopics = new Set(progress.visitedTopics ?? []);
+    visitedTopics.add(topicId);
+
+    progress.lastVisitedTopic = topicId;
+    progress.visitedTopics = Array.from(visitedTopics);
+    window.localStorage.setItem(key, JSON.stringify(progress));
+  } catch {
+    // Local progress is optional.
+  }
+</script>

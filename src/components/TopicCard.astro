@@ -1,0 +1,23 @@
+---
+const { topic } = Astro.props;
+const isReady = topic.status === "ready";
+const CardTag = isReady ? "a" : "article";
+const cardProps = isReady
+  ? { href: topic.contentUrl, class: "topic-card topic-card--ready" }
+  : { class: "topic-card topic-card--planned", "aria-disabled": "true" };
+---
+
+<CardTag {...cardProps}>
+  <div class="topic-card__meta">
+    <span>Lesson {topic.order}</span>
+    <span>{topic.difficulty}</span>
+  </div>
+  <h3>{topic.title}</h3>
+  <p>{topic.description}</p>
+  <div class="topic-card__footer">
+    <span>{topic.estimatedMinutes} min</span>
+    <span class:list={["status-pill", isReady ? "status-pill--ready" : "status-pill--planned"]}>
+      {isReady ? "Available" : "Planned"}
+    </span>
+  </div>
+</CardTag>

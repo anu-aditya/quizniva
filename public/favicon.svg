@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="QuizNiva">
+  <rect width="64" height="64" rx="12" fill="#102a2a"/>
+  <path d="M17 18h30v6H17zM17 29h22v6H17zM17 40h30v6H17z" fill="#d7fff2"/>
+  <circle cx="47" cy="32" r="9" fill="#ffb84d"/>
+  <path d="M43 32l3 3 6-7" fill="none" stroke="#102a2a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

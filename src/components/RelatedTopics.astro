@@ -1,0 +1,41 @@
+---
+const { topics = [], currentId } = Astro.props;
+const readyTopics = topics.filter((topic) => topic.status === "ready").sort((a, b) => a.order - b.order);
+const current = topics.find((topic) => topic.id === currentId);
+const previous = readyTopics.filter((topic) => topic.order < current?.order).at(-1);
+const next = readyTopics.find((topic) => topic.order > current?.order);
+---
+
+<section class="related-topics" aria-labelledby="related-title">
+  <h2 id="related-title">Related Study</h2>
+  <div class="related-topics__grid">
+    {previous ? (
+      <a class="related-link" href={previous.contentUrl}>
+        <span>Previous</span>
+        <strong>{previous.title}</strong>
+      </a>
+    ) : (
+      <div class="related-link related-link--muted">
+        <span>Previous</span>
+        <strong>Start of this course</strong>
+      </div>
+    )}
+
+    <a class="related-link" href={current?.quizUrl ?? "/python"}>
+      <span>Practice</span>
+      <strong>{current?.title ?? "Python"} Quiz</strong>
+    </a>
+
+    {next ? (
+      <a class="related-link" href={next.contentUrl}>
+        <span>Next</span>
+        <strong>{next.title}</strong>
+      </a>
+    ) : (
+      <a class="related-link" href="/python">
+        <span>Next</span>
+        <strong>Course Index</strong>
+      </a>
+    )}
+  </div>
+</section>

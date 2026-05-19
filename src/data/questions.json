@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "py_var_001",
+    "topicId": "python-variables",
+    "question": "Which symbol is used to assign a value to a variable in Python?",
+    "options": ["=", "==", ":=", "->"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The = operator assigns a value to a variable.",
+    "fullExplanation": "In Python, x = 5 stores the value 5 in the variable named x. The == operator checks equality, and -> is normally used in function return type hints.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_002",
+    "topicId": "python-variables",
+    "question": "Which variable name is valid in Python?",
+    "options": ["2score", "student_name", "class", "total-marks"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "student_name follows Python naming rules.",
+    "fullExplanation": "A Python variable name can contain letters, digits, and underscores, but it cannot start with a digit. class is a reserved keyword, and total-marks is read as subtraction.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_003",
+    "topicId": "python-variables",
+    "question": "What is printed by this code: age = 16; print(age)?",
+    "options": ["age", "16", "\"16\"", "Nothing"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "print(age) displays the value stored in age.",
+    "fullExplanation": "The variable age stores the integer 16. When the variable name is passed to print, Python looks up the stored value and displays 16.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_004",
+    "topicId": "python-variables",
+    "question": "What happens after these two lines: score = 5; score = 8?",
+    "options": ["score stores both 5 and 8", "score becomes 8", "Python shows an error", "score becomes 13"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The second assignment replaces the old value.",
+    "fullExplanation": "A variable name points to its current value. After score = 8, the name score refers to 8, so the earlier value 5 is no longer the value of score.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_005",
+    "topicId": "python-variables",
+    "question": "Which statement best describes a Python variable?",
+    "options": ["A fixed box that can hold only one data type forever", "A name that refers to a value", "A command that prints text", "A file saved on the computer"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "A variable is a name that refers to a value.",
+    "fullExplanation": "In Python, variables are names bound to values. The value can be an integer now and a string later, although changing types too often can make code harder to understand.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_006",
+    "topicId": "python-variables",
+    "question": "What is the output of: x = 3; y = x; print(y)?",
+    "options": ["x", "3", "y", "Error"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "y receives the value currently stored in x.",
+    "fullExplanation": "First x is assigned 3. Then y = x assigns the current value of x to y. Therefore print(y) displays 3.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_007",
+    "topicId": "python-variables",
+    "question": "Which name is not allowed because it is a Python keyword?",
+    "options": ["total", "for", "user_age", "marks2"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "for is a reserved keyword.",
+    "fullExplanation": "Python keywords have special meaning in the language. for starts a loop, so it cannot be used as a variable name.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_008",
+    "topicId": "python-variables",
+    "question": "What does this code print: a = 10; b = 4; total = a + b; print(total)?",
+    "options": ["a + b", "14", "104", "total"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The values of a and b are added.",
+    "fullExplanation": "a stores 10 and b stores 4. The expression a + b becomes 14, and that result is assigned to total.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_009",
+    "topicId": "python-variables",
+    "question": "Which line uses the recommended Python naming style for a variable?",
+    "options": ["studentName = \"Riya\"", "StudentName = \"Riya\"", "student_name = \"Riya\"", "student-name = \"Riya\""],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "snake_case is the recommended style for normal variables.",
+    "fullExplanation": "Python style guides recommend lowercase words separated by underscores for normal variables, such as student_name.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_010",
+    "topicId": "python-variables",
+    "question": "What is printed by: name = \"Python\"; print(\"name\")?",
+    "options": ["Python", "name", "\"Python\"", "Error"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Quotes make it plain text.",
+    "fullExplanation": "The expression \"name\" is a string literal, so Python prints the text name. To print the variable value, use print(name) without quotes.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_011",
+    "topicId": "python-variables",
+    "question": "After x = 2; x = x + 3, what value does x store?",
+    "options": ["2", "3", "5", "x + 3"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "The new value is calculated from the old value.",
+    "fullExplanation": "Python first evaluates the right side x + 3 using the old value of x, which is 2. The result 5 is then assigned back to x.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_012",
+    "topicId": "python-variables",
+    "question": "Which assignment creates a string variable?",
+    "options": ["city = Delhi", "city = \"Delhi\"", "\"city\" = Delhi", "city == \"Delhi\""],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Text values must be inside quotes.",
+    "fullExplanation": "city = \"Delhi\" assigns the string value Delhi to city. Without quotes, Python would look for another variable named Delhi.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_013",
+    "topicId": "python-variables",
+    "question": "What is the output of: value = 7; value += 2; print(value)?",
+    "options": ["7", "2", "9", "72"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "+= adds to the current value.",
+    "fullExplanation": "value += 2 is a shortcut for value = value + 2. Since value starts as 7, the final value is 9.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_014",
+    "topicId": "python-variables",
+    "question": "Which statement about Python variables is true?",
+    "options": ["You must declare the type before using a variable", "A variable is created when a value is assigned", "Variable names must always be uppercase", "Variables cannot store numbers"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Assignment creates a variable name.",
+    "fullExplanation": "Python does not require a separate declaration step for simple variables. A name is created in the current scope when you assign a value to it.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_015",
+    "topicId": "python-variables",
+    "question": "What is wrong with this line: first name = \"Aman\"?",
+    "options": ["Variable names cannot contain spaces", "Strings cannot use quotes", "Aman is a keyword", "The value must be a number"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Spaces are not allowed in variable names.",
+    "fullExplanation": "Use an underscore instead: first_name = \"Aman\". Python reads a space as a separator, not as part of a variable name.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_var_016",
+    "topicId": "python-variables",
+    "question": "What does Python do first in this line: result = price * quantity?",
+    "options": ["Prints result", "Evaluates price * quantity", "Deletes price", "Checks if result is a keyword"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The right side is evaluated first.",
+    "fullExplanation": "In an assignment, Python calculates the expression on the right side first. Then it binds the result to the variable name on the left.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_017",
+    "topicId": "python-variables",
+    "question": "What is printed by: a = 5; b = a; a = 9; print(b)?",
+    "options": ["5", "9", "a", "Error"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "b keeps the value it was assigned.",
+    "fullExplanation": "b = a assigns the current value 5 to b. Later changing a to 9 does not automatically change b for simple immutable values like integers.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_018",
+    "topicId": "python-variables",
+    "question": "Which variable name is valid but not recommended by normal Python style?",
+    "options": ["total_marks", "TotalMarks", "total-marks", "total marks"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "TotalMarks is valid, but not the usual variable style.",
+    "fullExplanation": "TotalMarks is syntactically valid because it uses letters only. For normal variables, Python style usually prefers total_marks. Names with spaces or hyphens are invalid.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_019",
+    "topicId": "python-variables",
+    "question": "What error is most likely from: print(score) before score has been assigned?",
+    "options": ["TypeError", "NameError", "ValueError", "SyntaxError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Python does not know the name score yet.",
+    "fullExplanation": "If a variable name has not been assigned in an accessible scope, Python raises NameError when you try to use it.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_var_020",
+    "topicId": "python-variables",
+    "question": "Which line correctly swaps two variables in Python?",
+    "options": ["a, b = b, a", "a = b = a", "swap(a, b)", "a <- b <- a"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Python supports tuple unpacking for swaps.",
+    "fullExplanation": "The line a, b = b, a evaluates the right side first and then assigns the values back to a and b in swapped positions.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "py_type_001",
+    "topicId": "python-data-types",
+    "question": "Which Python type stores a whole number such as 25?",
+    "options": ["int", "str", "bool", "NoneType"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Whole numbers are integers.",
+    "fullExplanation": "In Python, a whole number such as 25 has the int data type. Strings store text, booleans store True or False, and NoneType represents None.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_002",
+    "topicId": "python-data-types",
+    "question": "What is the data type of the value 'Python'?",
+    "options": ["int", "float", "str", "bool"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Quoted text is a string.",
+    "fullExplanation": "The value 'Python' is written inside quotes, so Python treats it as a string, or str.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_003",
+    "topicId": "python-data-types",
+    "question": "What does type(3.5) report?",
+    "options": ["<class 'int'>", "<class 'float'>", "<class 'str'>", "<class 'bool'>"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "3.5 is a floating-point number.",
+    "fullExplanation": "A number with a decimal point is a float in Python, so type(3.5) reports <class 'float'>.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_004",
+    "topicId": "python-data-types",
+    "question": "Which pair contains the two boolean values in Python?",
+    "options": ["true and false", "YES and NO", "True and False", "1 and 0 only"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Python booleans use capital first letters.",
+    "fullExplanation": "The boolean values are True and False. The lowercase names true and false are not built-in boolean values in Python.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_005",
+    "topicId": "python-data-types",
+    "question": "What data type does input() return before conversion?",
+    "options": ["int", "float", "str", "bool"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "input() returns text.",
+    "fullExplanation": "The input() function always returns a string. If the user types 42, the program receives '42' until you convert it.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_006",
+    "topicId": "python-data-types",
+    "question": "What is the result of int('12') + 3?",
+    "options": ["'123'", "15", "12.3", "TypeError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "int('12') converts the text to a number.",
+    "fullExplanation": "int('12') becomes the integer 12. Then 12 + 3 gives 15.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_007",
+    "topicId": "python-data-types",
+    "question": "What is printed by print('10' + '5')?",
+    "options": ["15", "105", "10 5", "TypeError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The plus sign joins strings.",
+    "fullExplanation": "Both values are strings, so + performs string concatenation. The result is the text '105', not the number 15.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_008",
+    "topicId": "python-data-types",
+    "question": "Which value represents the absence of a value in Python?",
+    "options": ["None", "False", "0", "''"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "None means no value.",
+    "fullExplanation": "None is Python's special value for absence or no value. It is different from False, 0, and an empty string.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_009",
+    "topicId": "python-data-types",
+    "question": "Which function is commonly used to inspect a value's type?",
+    "options": ["print()", "type()", "input()", "round()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "type() reports the data type.",
+    "fullExplanation": "The type() function tells you the class of a value, such as <class 'int'> or <class 'str'>.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_010",
+    "topicId": "python-data-types",
+    "question": "Which conversion should you use for the text '3.75' if decimal math is needed?",
+    "options": ["int('3.75')", "float('3.75')", "str('3.75')", "bool('3.75')"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "float() converts decimal text.",
+    "fullExplanation": "The text '3.75' contains a decimal point, so float('3.75') converts it to a floating-point number.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_type_011",
+    "topicId": "python-data-types",
+    "question": "What is the most likely error from print('4' + 2)?",
+    "options": ["NameError", "TypeError", "IndexError", "No error"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "A string and integer cannot be added directly.",
+    "fullExplanation": "Python cannot use + between a string and an integer. Convert the number to text or the text to a number depending on the goal.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_type_012",
+    "topicId": "python-data-types",
+    "question": "Which line creates a boolean value from a comparison?",
+    "options": ["passed = 'True'", "passed = marks >= 35", "passed = 35", "passed = None"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Comparisons evaluate to True or False.",
+    "fullExplanation": "The expression marks >= 35 produces a boolean result. The variable passed receives either True or False.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_type_013",
+    "topicId": "python-data-types",
+    "question": "What is printed by print(type('7'))?",
+    "options": ["<class 'int'>", "<class 'str'>", "<class 'float'>", "<class 'bool'>"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The value is quoted.",
+    "fullExplanation": "Even though '7' looks like a number, the quotes make it a string, so type('7') reports <class 'str'>.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_014",
+    "topicId": "python-data-types",
+    "question": "After value = 10; value = 'ten', what is true about value?",
+    "options": ["It must stay an int forever", "It now refers to a string", "Python deletes the variable", "It stores both values"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Python names can refer to a new type later.",
+    "fullExplanation": "Python is dynamically typed. A name can refer to an integer first and a string later, though changing types too often can make code harder to follow.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_type_015",
+    "topicId": "python-data-types",
+    "question": "What happens with flag = true in normal Python code?",
+    "options": ["flag becomes True", "Python treats true as an undefined name", "flag becomes False", "Python creates a string"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The boolean name must be True.",
+    "fullExplanation": "Python's boolean value is True with a capital T. The lowercase name true is not defined unless you created it yourself.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_type_016",
+    "topicId": "python-data-types",
+    "question": "Which value is a string?",
+    "options": ["False", "'False'", "None", "12.0"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Quotes create a string.",
+    "fullExplanation": "The value 'False' is text because it is inside quotes. False without quotes is a boolean.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_017",
+    "topicId": "python-data-types",
+    "question": "Which statement about 10 and '10' is correct?",
+    "options": ["They are the same type", "10 is an int and '10' is a str", "Both are strings", "Both are booleans"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Quotes change the type.",
+    "fullExplanation": "10 is an integer. '10' is a string because it is written inside quotes.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_018",
+    "topicId": "python-data-types",
+    "question": "Which line converts the number 42 into text?",
+    "options": ["int(42)", "float(42)", "str(42)", "type(42)"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "str() converts a value to a string.",
+    "fullExplanation": "str(42) returns the text '42'. This is useful when joining a number into a string message.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_type_019",
+    "topicId": "python-data-types",
+    "question": "Why is type checking useful while debugging?",
+    "options": ["It deletes wrong values", "It confirms whether a value is the kind you expect", "It changes every value to an int", "It prevents all errors"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "type() helps confirm expectations.",
+    "fullExplanation": "When code behaves strangely, checking the type can reveal that a value is text instead of a number, or a float instead of an int.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_type_020",
+    "topicId": "python-data-types",
+    "question": "Which expression produces a float?",
+    "options": ["10 + 5", "float('2.5')", "str(2.5)", "bool(0)"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "float('2.5') returns a decimal number.",
+    "fullExplanation": "float('2.5') converts the text into the floating-point number 2.5. The other options produce an int, a string, and a boolean.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_001",
+    "topicId": "python-input-output",
+    "question": "Which function is used to display output on the screen?",
+    "options": ["input()", "print()", "type()", "int()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "print() displays output.",
+    "fullExplanation": "The print() function sends values to the screen so the user can see them.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_002",
+    "topicId": "python-input-output",
+    "question": "Which function reads text typed by the user?",
+    "options": ["print()", "input()", "len()", "range()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "input() reads user text.",
+    "fullExplanation": "input() waits for the user to type something and press Enter, then returns that typed text.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_003",
+    "topicId": "python-input-output",
+    "question": "What type does input('Age: ') return if the user types 16?",
+    "options": ["int", "float", "str", "bool"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "input() always returns a string.",
+    "fullExplanation": "Even when the typed characters look like a number, input() returns text. You need int() or float() for numeric math.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_004",
+    "topicId": "python-input-output",
+    "question": "Which line correctly reads an integer age from the user?",
+    "options": ["age = input(int('Age: '))", "age = int(input('Age: '))", "age = print(input('Age: '))", "age = str(input('Age: '))"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Convert the input result with int().",
+    "fullExplanation": "input('Age: ') reads text first. int(...) converts that text into an integer for numeric work.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_005",
+    "topicId": "python-input-output",
+    "question": "What does print('Hi', 'Asha') display by default?",
+    "options": ["HiAsha", "Hi Asha", "('Hi', 'Asha')", "Hi, Asha"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "print() separates multiple values with spaces.",
+    "fullExplanation": "When print() receives multiple values, it adds a space between them unless sep is changed.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_006",
+    "topicId": "python-input-output",
+    "question": "What is printed by print('2026', '05', '19', sep='-')?",
+    "options": ["2026 05 19", "2026-05-19", "20260519", "2026/05/19"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "sep changes the separator.",
+    "fullExplanation": "The sep='-' argument tells print() to place hyphens between the values instead of spaces.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_007",
+    "topicId": "python-input-output",
+    "question": "What is printed by print('A', end=''); print('B')?",
+    "options": ["A B", "AB", "A then a blank line then B", "A...B"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "end='' prevents the first newline.",
+    "fullExplanation": "The first print ends with an empty string instead of a newline, so the second print continues on the same line.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_008",
+    "topicId": "python-input-output",
+    "question": "Which line is a valid f-string for a variable named name?",
+    "options": ["print('Hello {name}')", "print(f'Hello {name}')", "print('Hello' name)", "print(f Hello name)"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "An f-string starts with f before the quote.",
+    "fullExplanation": "The f before the string tells Python to replace {name} with the value of the variable name.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_009",
+    "topicId": "python-input-output",
+    "question": "If number = input('Number: ') and the user types 5, what does print(number + number) display?",
+    "options": ["10", "55", "5 5", "TypeError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The input value is text.",
+    "fullExplanation": "The variable number stores the string '5'. Adding it to itself joins the strings, producing '55'.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_010",
+    "topicId": "python-input-output",
+    "question": "Which conversion is best for reading a price such as 49.99?",
+    "options": ["int(input('Price: '))", "float(input('Price: '))", "bool(input('Price: '))", "type(input('Price: '))"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Prices can include decimals.",
+    "fullExplanation": "float(input('Price: ')) reads the text and converts it to a floating-point number, which can represent decimals.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_011",
+    "topicId": "python-input-output",
+    "question": "In input('Name: '), what is 'Name: ' called?",
+    "options": ["A prompt", "An integer", "A traceback", "A separator"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The text shown to the user is the prompt.",
+    "fullExplanation": "The prompt tells the user what to type. It is displayed before input() waits for the user's response.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_012",
+    "topicId": "python-input-output",
+    "question": "What is wrong with input(Enter name: )?",
+    "options": ["The prompt text is not inside quotes", "input() cannot have prompts", "The name must be an integer", "Nothing is wrong"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Prompt text must be a string.",
+    "fullExplanation": "Text passed to input() must be written as a string, such as input('Enter name: ').",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_013",
+    "topicId": "python-input-output",
+    "question": "Which print call can display text and a number without manual conversion?",
+    "options": ["print('Score:', 90)", "print('Score:' + 90)", "print(Score: 90)", "print(input + 90)"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Commas let print() handle separate values.",
+    "fullExplanation": "print('Score:', 90) passes two values to print(), so Python displays them with a space. Using + with a string and integer would fail.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_014",
+    "topicId": "python-input-output",
+    "question": "What value is stored in name after name = input('Name: ') if the user types Riya?",
+    "options": ["'Name: Riya'", "'Name: '", "'Riya'", "Nothing"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Only the typed response is stored.",
+    "fullExplanation": "The prompt is shown to the user, but the variable receives the text the user typed, which is 'Riya'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_015",
+    "topicId": "python-input-output",
+    "question": "Which line displays Score: 18/20 using variables score and total?",
+    "options": ["print(f'Score: {score}/{total}')", "print('Score: score/total')", "print(f'Score: score/total')", "print('Score:', {score}/{total})"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "F-strings evaluate expressions in braces.",
+    "fullExplanation": "In an f-string, {score} and {total} are replaced by the current variable values.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_016",
+    "topicId": "python-input-output",
+    "question": "Which statement about print() is true?",
+    "options": ["It only prints strings", "It can print numbers and strings", "It always asks for user input", "It converts every value to an int"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "print() can display many value types.",
+    "fullExplanation": "print() can display strings, numbers, booleans, and other values by converting them to a display form.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_017",
+    "topicId": "python-input-output",
+    "question": "What is the best first step before adding two values read with input()?",
+    "options": ["Convert them to numbers", "Put both in quotes again", "Call print() twice", "Use sep='+'"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Raw input is text.",
+    "fullExplanation": "Because input() returns strings, convert each value with int() or float() before numeric addition.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_io_018",
+    "topicId": "python-input-output",
+    "question": "What does the end argument in print() control?",
+    "options": ["What appears after the printed values", "What appears between multiple values", "The input prompt", "The variable type"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "end controls the ending text.",
+    "fullExplanation": "By default, print() ends with a newline. The end argument lets you replace that ending with something else.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_019",
+    "topicId": "python-input-output",
+    "question": "What does the sep argument in print() control?",
+    "options": ["What appears between multiple printed values", "What appears after the print call", "The input type", "The number of questions"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "sep controls separators.",
+    "fullExplanation": "The sep argument sets the text placed between values when print() receives more than one value.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_io_020",
+    "topicId": "python-input-output",
+    "question": "Which code correctly reads two integers and prints their sum?",
+    "options": ["a = input('A: '); b = input('B: '); print(a + b)", "a = int(input('A: ')); b = int(input('B: ')); print(a + b)", "a = print('A: '); b = print('B: '); print(a + b)", "a = str(input('A: ')); b = str(input('B: ')); print(a + b)"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Convert both inputs before adding.",
+    "fullExplanation": "int(input(...)) reads each value as text and converts it to an integer, so + performs numeric addition.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_001",
+    "topicId": "python-if-else",
+    "question": "What does an if statement do?",
+    "options": ["Repeats code forever", "Checks a condition and may run a block", "Creates a list", "Reads keyboard input"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "if checks a condition.",
+    "fullExplanation": "An if statement evaluates a condition. If the condition is true, Python runs the indented block under it.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_002",
+    "topicId": "python-if-else",
+    "question": "What is the purpose of else?",
+    "options": ["It starts every program", "It runs when no earlier condition matched", "It compares two values", "It imports a module"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "else is the fallback block.",
+    "fullExplanation": "The else block runs only if the if and any earlier elif conditions in the same chain were false.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_003",
+    "topicId": "python-if-else",
+    "question": "Which keyword checks another condition after if?",
+    "options": ["else", "elif", "again", "case"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "elif means else-if.",
+    "fullExplanation": "elif lets you test another condition in the same decision chain before the final else fallback.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_004",
+    "topicId": "python-if-else",
+    "question": "Which symbol is required at the end of an if condition line?",
+    "options": [";", ".", ":", ","],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "A colon starts the block.",
+    "fullExplanation": "Python uses a colon after if, elif, else, function definitions, and loops to introduce an indented block.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_005",
+    "topicId": "python-if-else",
+    "question": "How does Python know which lines belong inside an if block?",
+    "options": ["By indentation", "By uppercase letters", "By file name", "By comments"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Indentation defines blocks.",
+    "fullExplanation": "Python uses indentation to group lines under if, elif, and else. Incorrect indentation changes the meaning or causes an error.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_006",
+    "topicId": "python-if-else",
+    "question": "Which operator checks whether two values are equal?",
+    "options": ["=", "==", "!=", ">="],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "== compares equality.",
+    "fullExplanation": "Use == to compare two values. A single = assigns a value to a variable.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_007",
+    "topicId": "python-if-else",
+    "question": "Which operator means not equal to?",
+    "options": ["<>", "!=", "==", "not="],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "!= means not equal.",
+    "fullExplanation": "The != operator checks whether two values are different.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_008",
+    "topicId": "python-if-else",
+    "question": "What is printed by score = 70; if score >= 50: print('Pass'); else: print('Try again')?",
+    "options": ["Pass", "Try again", "True", "Nothing"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "70 is at least 50.",
+    "fullExplanation": "The condition score >= 50 is true, so Python runs the if block and prints Pass.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_009",
+    "topicId": "python-if-else",
+    "question": "What is printed by x = 3; if x > 5: print('A'); else: print('B')?",
+    "options": ["A", "B", "True", "Error"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "3 is not greater than 5.",
+    "fullExplanation": "The condition x > 5 is false, so the else block runs and prints B.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_010",
+    "topicId": "python-if-else",
+    "question": "With and, when is the combined condition true?",
+    "options": ["When both parts are true", "When both parts are false", "Always", "Only when the first part is false"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "and requires both conditions.",
+    "fullExplanation": "A and B is true only when A is true and B is true.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_011",
+    "topicId": "python-if-else",
+    "question": "With or, when is the combined condition true?",
+    "options": ["Only when both parts are true", "When at least one part is true", "Only when both parts are false", "Never"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "or needs at least one true part.",
+    "fullExplanation": "A or B is true when A is true, B is true, or both are true.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_012",
+    "topicId": "python-if-else",
+    "question": "What does not True evaluate to?",
+    "options": ["True", "False", "None", "0"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "not reverses a boolean.",
+    "fullExplanation": "The not operator reverses a boolean value, so not True becomes False.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_013",
+    "topicId": "python-if-else",
+    "question": "Which line is correct for the final fallback in an if chain?",
+    "options": ["else score < 50:", "else:", "elif:", "otherwise:"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "else has no condition.",
+    "fullExplanation": "else is written with a colon and no condition. Use elif when another condition is needed.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_014",
+    "topicId": "python-if-else",
+    "question": "What does age >= 18 check?",
+    "options": ["Age is exactly 18 only", "Age is greater than or equal to 18", "Age is less than 18", "Age is not a number"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": ">= means greater than or equal to.",
+    "fullExplanation": "The >= operator is true when the left value is greater than the right value or equal to it.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_015",
+    "topicId": "python-if-else",
+    "question": "What is the result of 5 > 2?",
+    "options": ["True", "False", "5", "2"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "5 is greater than 2.",
+    "fullExplanation": "Comparison expressions produce booleans. Since 5 is greater than 2, the result is True.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_if_016",
+    "topicId": "python-if-else",
+    "question": "In an if/elif/else chain, how many matching blocks run?",
+    "options": ["All true blocks", "Only the first matching block", "Always two blocks", "No blocks"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Python stops at the first match.",
+    "fullExplanation": "Python checks conditions from top to bottom and runs the first block whose condition is true. The rest of that chain is skipped.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_017",
+    "topicId": "python-if-else",
+    "question": "Why should grade checks usually test higher marks before lower marks?",
+    "options": ["Python only allows descending numbers", "A broad lower condition can match first", "It makes strings shorter", "It avoids input()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Order affects elif chains.",
+    "fullExplanation": "If marks >= 60 is checked before marks >= 90, a score of 95 matches the lower condition first and never reaches the higher grade check.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_018",
+    "topicId": "python-if-else",
+    "question": "Which expression checks that age is at least 18 and has_id is true?",
+    "options": ["age >= 18 or has_id", "age >= 18 and has_id", "age == 18 not has_id", "age = 18 and has_id"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "and requires both conditions.",
+    "fullExplanation": "age >= 18 and has_id is true only when the age condition is true and has_id is also true.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_019",
+    "topicId": "python-if-else",
+    "question": "What error is likely if the colon is missing after if score >= 50?",
+    "options": ["SyntaxError", "NameError", "TypeError", "ValueError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Missing block punctuation is syntax-related.",
+    "fullExplanation": "Python cannot understand the structure of the if statement without the colon, so it raises a SyntaxError.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_if_020",
+    "topicId": "python-if-else",
+    "question": "Which statement is true about indentation in an if statement?",
+    "options": ["It is optional", "It only affects comments", "It defines the block that runs", "It must always be exactly one space"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Indentation controls block structure.",
+    "fullExplanation": "Indented lines under an if statement belong to that block. Consistent indentation is required for Python to read the code correctly.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_001",
+    "topicId": "python-loops",
+    "question": "What is the main purpose of a loop?",
+    "options": ["To repeat a block of code", "To store key-value pairs", "To define a string", "To stop Python from running"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Loops repeat code.",
+    "fullExplanation": "A loop runs a block of code repeatedly, either for each item in a sequence or while a condition remains true.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_002",
+    "topicId": "python-loops",
+    "question": "Which loop is usually best for processing each item in a list?",
+    "options": ["if loop", "for loop", "def loop", "try loop"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "for loops iterate over sequences.",
+    "fullExplanation": "A for loop is designed to take one item at a time from a sequence such as a list, string, or range.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_003",
+    "topicId": "python-loops",
+    "question": "What values does range(3) produce?",
+    "options": ["1, 2, 3", "0, 1, 2", "0, 1, 2, 3", "3 only"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "range(3) starts at 0 and stops before 3.",
+    "fullExplanation": "range(3) produces 0, 1, and 2. The stop value 3 is not included.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_004",
+    "topicId": "python-loops",
+    "question": "What values does range(1, 4) produce?",
+    "options": ["1, 2, 3", "1, 2, 3, 4", "0, 1, 2, 3", "4 only"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The stop value is excluded.",
+    "fullExplanation": "range(1, 4) starts at 1 and stops before 4, so it produces 1, 2, and 3.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_005",
+    "topicId": "python-loops",
+    "question": "When does a while loop repeat?",
+    "options": ["Only once", "While its condition is true", "Only for strings", "After the program ends"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "while checks a condition.",
+    "fullExplanation": "A while loop keeps repeating as long as its condition evaluates to True.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_006",
+    "topicId": "python-loops",
+    "question": "Why is count += 1 often needed inside a counting while loop?",
+    "options": ["To update the value so the loop can finish", "To create a string", "To remove indentation", "To call print() automatically"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The loop variable must change.",
+    "fullExplanation": "If the condition depends on count, then count must eventually change. Otherwise the condition may stay true forever.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_007",
+    "topicId": "python-loops",
+    "question": "What does break do inside a loop?",
+    "options": ["Skips only the current item", "Exits the loop immediately", "Starts the loop again", "Creates a new list"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "break exits the loop.",
+    "fullExplanation": "The break statement stops the nearest enclosing loop immediately, even if more items or iterations remain.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_008",
+    "topicId": "python-loops",
+    "question": "What does continue do inside a loop?",
+    "options": ["Stops the whole program", "Skips to the next loop iteration", "Deletes the loop variable", "Runs the else block"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "continue skips the rest of the current step.",
+    "fullExplanation": "continue stops the current iteration early and moves to the next iteration of the loop.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_009",
+    "topicId": "python-loops",
+    "question": "What is printed by for name in ['Asha', 'Riya']: print(name)?",
+    "options": ["Asha then Riya", "name then name", "['Asha', 'Riya']", "Nothing"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The loop variable receives each item.",
+    "fullExplanation": "The variable name is assigned 'Asha' first and 'Riya' next, so each value is printed in order.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_010",
+    "topicId": "python-loops",
+    "question": "What does count += 1 mean?",
+    "options": ["count = count + 1", "count = 1", "count == 1", "count = count - 1"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "+= adds to the current value.",
+    "fullExplanation": "count += 1 is shorthand for count = count + 1. It increases count by one.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_011",
+    "topicId": "python-loops",
+    "question": "What is printed by count = 1; while count <= 3: print(count); count += 1?",
+    "options": ["1 2 3", "0 1 2", "1 2 3 4", "It never stops"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The loop stops after count becomes 4.",
+    "fullExplanation": "The loop prints 1, 2, and 3. Then count becomes 4, making count <= 3 false.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_012",
+    "topicId": "python-loops",
+    "question": "How many times does for i in range(5): run?",
+    "options": ["4 times", "5 times", "6 times", "It depends on i before the loop"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "range(5) has five values.",
+    "fullExplanation": "range(5) produces 0, 1, 2, 3, and 4, so the loop body runs five times.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_013",
+    "topicId": "python-loops",
+    "question": "What values does range(2, 8, 2) produce?",
+    "options": ["2, 4, 6", "2, 4, 6, 8", "0, 2, 4, 6", "8, 6, 4, 2"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The third range value is the step.",
+    "fullExplanation": "range(2, 8, 2) starts at 2, adds 2 each time, and stops before 8, producing 2, 4, and 6.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_014",
+    "topicId": "python-loops",
+    "question": "What can cause an infinite while loop?",
+    "options": ["The condition never becomes false", "The loop uses print()", "The loop has a colon", "The loop starts at 0"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "A while loop needs an exit path.",
+    "fullExplanation": "If the while condition remains true forever, the loop keeps running. Updating a counter or changing the condition can prevent this.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_015",
+    "topicId": "python-loops",
+    "question": "What is printed by for ch in 'abc': print(ch)?",
+    "options": ["abc once", "a then b then c", "ch three times", "0 then 1 then 2"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Strings can be looped character by character.",
+    "fullExplanation": "A string is a sequence, so the for loop assigns one character at a time to ch.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_016",
+    "topicId": "python-loops",
+    "question": "Which statement about range(1, 5) is true?",
+    "options": ["It includes 5", "It stops before 5", "It starts at 0", "It produces only 5"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "range stop values are excluded.",
+    "fullExplanation": "range(1, 5) produces 1, 2, 3, and 4. The ending value 5 is not included.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_loop_017",
+    "topicId": "python-loops",
+    "question": "Which code adds all numbers in scores to total?",
+    "options": ["for score in scores: total += score", "for score in scores: total = score", "if score in scores: total += scores", "while scores: total = score"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Add each loop item to the running total.",
+    "fullExplanation": "Inside the loop, score holds one item at a time. total += score adds each item to the accumulated total.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_018",
+    "topicId": "python-loops",
+    "question": "What happens after break runs inside a for loop?",
+    "options": ["The loop starts over", "The current loop ends", "Only the current print is skipped", "The loop variable is deleted"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "break ends the loop.",
+    "fullExplanation": "break exits the nearest loop immediately, so Python continues with the first statement after that loop.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_019",
+    "topicId": "python-loops",
+    "question": "What happens after continue runs inside a for loop?",
+    "options": ["The current iteration ends and the next begins", "The whole loop is destroyed", "The program raises SyntaxError", "The variable becomes None"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "continue moves to the next iteration.",
+    "fullExplanation": "continue skips the remaining code in the current loop iteration and then continues with the next item if one exists.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_loop_020",
+    "topicId": "python-loops",
+    "question": "Which beginner mistake is common with range()?",
+    "options": ["Forgetting that the stop value is excluded", "Using it only with strings", "Writing range without parentheses in every case", "Expecting it to create dictionaries"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "range() stops before the stop value.",
+    "fullExplanation": "Many beginners expect range(1, 5) to include 5, but Python stops before the ending value.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_001",
+    "topicId": "python-strings",
+    "question": "What is a Python string used to store?",
+    "options": ["Text", "Only whole numbers", "Only True or False", "Only file names"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Strings store text.",
+    "fullExplanation": "A string is Python's text data type. It can contain letters, numbers, spaces, and symbols.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_002",
+    "topicId": "python-strings",
+    "question": "What does len('Python') return?",
+    "options": ["5", "6", "7", "Python"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "'Python' has six characters.",
+    "fullExplanation": "len() counts characters in a string. P, y, t, h, o, and n make six characters.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_003",
+    "topicId": "python-strings",
+    "question": "What is 'Python'[0]?",
+    "options": ["P", "y", "n", "Python"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "String indexes start at 0.",
+    "fullExplanation": "The first character is at index 0, so 'Python'[0] is 'P'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_004",
+    "topicId": "python-strings",
+    "question": "What is 'Python'[-1]?",
+    "options": ["P", "y", "o", "n"],
+    "correctAnswerIndex": 3,
+    "shortExplanation": "-1 means the last character.",
+    "fullExplanation": "Negative indexes count from the end. Index -1 gives the final character, which is 'n'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_005",
+    "topicId": "python-strings",
+    "question": "What is 'Python'[0:3]?",
+    "options": ["Pyt", "Pyth", "yth", "Python"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Slices stop before the ending index.",
+    "fullExplanation": "The slice starts at index 0 and stops before index 3, so it includes P, y, and t.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_006",
+    "topicId": "python-strings",
+    "question": "Which statement about Python strings is true?",
+    "options": ["Strings are immutable", "Strings can only contain letters", "Strings must use double quotes only", "Strings start indexing at 1"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Strings cannot be changed in place.",
+    "fullExplanation": "Python strings are immutable. Operations that seem to change text actually create a new string.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_007",
+    "topicId": "python-strings",
+    "question": "What does 'Python'.lower() return?",
+    "options": ["PYTHON", "python", "Python", "pYTHON"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "lower() makes letters lowercase.",
+    "fullExplanation": "The lower() method returns a new string with all cased letters converted to lowercase.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_008",
+    "topicId": "python-strings",
+    "question": "What does '  hi  '.strip() return?",
+    "options": ["'hi'", "'  hi'", "'hi  '", "'  hi  '"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "strip() removes outer spaces.",
+    "fullExplanation": "strip() removes whitespace from the beginning and end of a string, returning 'hi'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_009",
+    "topicId": "python-strings",
+    "question": "Which method replaces text inside a string?",
+    "options": ["split()", "replace()", "append()", "pop()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "replace() returns text with replacements.",
+    "fullExplanation": "replace(old, new) returns a new string where matching text has been replaced.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_010",
+    "topicId": "python-strings",
+    "question": "What does 'a,b,c'.split(',') return?",
+    "options": ["['a', 'b', 'c']", "'abc'", "'a b c'", "['a,b,c']"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "split() breaks a string into a list.",
+    "fullExplanation": "split(',') uses the comma as the separator and returns a list of the pieces.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_011",
+    "topicId": "python-strings",
+    "question": "What is 'Py' + 'thon'?",
+    "options": ["Py thon", "Python", "Py+thon", "TypeError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "+ joins strings.",
+    "fullExplanation": "When both operands are strings, + concatenates them, producing 'Python'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_012",
+    "topicId": "python-strings",
+    "question": "What is 'ha' * 3?",
+    "options": ["ha3", "hahaha", "ha ha ha", "TypeError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "* repeats a string.",
+    "fullExplanation": "A string multiplied by an integer repeats the string that many times, so 'ha' * 3 is 'hahaha'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_013",
+    "topicId": "python-strings",
+    "question": "What error is likely from word = 'Python'; print(word[6])?",
+    "options": ["NameError", "IndexError", "TypeError", "ValueError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Index 6 is outside the string.",
+    "fullExplanation": "'Python' has indexes 0 through 5. Index 6 does not exist, so Python raises IndexError.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_014",
+    "topicId": "python-strings",
+    "question": "After name = 'asha'; name.upper(); print(name), what is printed?",
+    "options": ["ASHA", "asha", "NameError", "None"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "upper() returns a new string.",
+    "fullExplanation": "String methods do not change the original string in place. Since the result was not assigned back, name is still 'asha'.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_015",
+    "topicId": "python-strings",
+    "question": "What does len('Hi there') return?",
+    "options": ["7", "8", "9", "2"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Spaces count as characters.",
+    "fullExplanation": "'Hi there' has two letters, one space, and five more letters, for a total of eight characters.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_016",
+    "topicId": "python-strings",
+    "question": "What is 'Python'[2:]?",
+    "options": ["Py", "thon", "yth", "Python"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Leaving the end blank goes to the end.",
+    "fullExplanation": "The slice starts at index 2, which is 't', and continues through the end, producing 'thon'.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_017",
+    "topicId": "python-strings",
+    "question": "What does 'Python'.startswith('Py') return?",
+    "options": ["True", "False", "'Py'", "0"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The string begins with Py.",
+    "fullExplanation": "startswith() returns a boolean. Since 'Python' begins with 'Py', the result is True.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_018",
+    "topicId": "python-strings",
+    "question": "Which index is a common way to access the last character of a string?",
+    "options": ["0", "1", "-1", "len(text)"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "-1 accesses the final character.",
+    "fullExplanation": "Negative indexing counts from the end, so text[-1] returns the last character.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_str_019",
+    "topicId": "python-strings",
+    "question": "Which line correctly creates a new string from word = 'cat' as 'bat'?",
+    "options": ["word[0] = 'b'", "word = 'b' + word[1:]", "word.change(0, 'b')", "word.append('b')"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Build a new string instead of editing in place.",
+    "fullExplanation": "Strings are immutable, so you cannot assign to word[0]. Creating 'b' + word[1:] produces a new string.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_str_020",
+    "topicId": "python-strings",
+    "question": "Which quote style can create a normal Python string?",
+    "options": ["Only single quotes", "Only double quotes", "Single or double quotes", "Only backticks"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Both common quote styles work.",
+    "fullExplanation": "Python allows both single-quoted and double-quoted strings, such as 'hello' and \"hello\".",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_001",
+    "topicId": "python-lists",
+    "question": "What does a Python list store?",
+    "options": ["Multiple values in one variable", "Only one character", "Only True or False", "Only error messages"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Lists hold multiple items.",
+    "fullExplanation": "A list is a collection that can store multiple values such as scores, names, or tasks.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_002",
+    "topicId": "python-lists",
+    "question": "What is the first index in a Python list?",
+    "options": ["0", "1", "-1", "10"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "List indexing starts at 0.",
+    "fullExplanation": "The first item in a Python list is accessed with index 0.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_003",
+    "topicId": "python-lists",
+    "question": "What is fruits[1] if fruits = ['apple', 'banana', 'mango']?",
+    "options": ["apple", "banana", "mango", "IndexError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Index 1 is the second item.",
+    "fullExplanation": "Python indexes start at 0, so fruits[0] is 'apple' and fruits[1] is 'banana'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_004",
+    "topicId": "python-lists",
+    "question": "What is fruits[-1] if fruits = ['apple', 'banana', 'mango']?",
+    "options": ["apple", "banana", "mango", "IndexError"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "-1 means the last item.",
+    "fullExplanation": "Negative indexes count from the end. fruits[-1] returns the last item, 'mango'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_005",
+    "topicId": "python-lists",
+    "question": "Which method adds an item to the end of a list?",
+    "options": ["append()", "remove()", "pop()", "strip()"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "append() adds at the end.",
+    "fullExplanation": "list.append(value) adds the value as a new item at the end of the list.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_006",
+    "topicId": "python-lists",
+    "question": "What does pop() do when called without an index?",
+    "options": ["Removes and returns the last item", "Removes the first matching value", "Clears the whole list", "Counts the list"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "pop() defaults to the last item.",
+    "fullExplanation": "Without an index, pop() removes the last item in the list and returns that removed value.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_007",
+    "topicId": "python-lists",
+    "question": "Which method removes the first matching value from a list?",
+    "options": ["append()", "remove()", "len()", "split()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "remove() deletes by value.",
+    "fullExplanation": "list.remove(value) finds and removes the first item equal to value.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_008",
+    "topicId": "python-lists",
+    "question": "What does len([10, 20, 30]) return?",
+    "options": ["2", "3", "30", "60"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "len() counts items.",
+    "fullExplanation": "The list has three items, so len([10, 20, 30]) returns 3.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_009",
+    "topicId": "python-lists",
+    "question": "What is the result after items = ['pen', 'book']; items[0] = 'pencil'?",
+    "options": ["['pencil', 'book']", "['pen', 'pencil']", "['pen', 'book', 'pencil']", "TypeError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Lists can be updated by index.",
+    "fullExplanation": "Lists are mutable, so assigning items[0] changes the first item from 'pen' to 'pencil'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_010",
+    "topicId": "python-lists",
+    "question": "Which statement about lists is true?",
+    "options": ["Lists are mutable", "Lists cannot store strings", "Lists start indexing at 1", "Lists must have exactly three items"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "List contents can change.",
+    "fullExplanation": "Python lists are mutable, meaning their items can be changed, added, or removed.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_011",
+    "topicId": "python-lists",
+    "question": "What is [10, 20, 30, 40][1:3]?",
+    "options": ["[10, 20]", "[20, 30]", "[20, 30, 40]", "[30, 40]"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Slicing stops before the end index.",
+    "fullExplanation": "The slice starts at index 1 and stops before index 3, so it returns [20, 30].",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_list_012",
+    "topicId": "python-lists",
+    "question": "Which loop processes every item in scores?",
+    "options": ["for score in scores:", "if score in scores:", "def score in scores:", "for scores = score:"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "for loops iterate through lists.",
+    "fullExplanation": "for score in scores assigns each list item to score one at a time.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_013",
+    "topicId": "python-lists",
+    "question": "What error is likely from items = ['pen', 'book']; print(items[2])?",
+    "options": ["NameError", "IndexError", "TypeError", "ValueError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Index 2 does not exist.",
+    "fullExplanation": "The list has only two items with indexes 0 and 1. Accessing index 2 raises IndexError.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_list_014",
+    "topicId": "python-lists",
+    "question": "Which expression creates an empty list?",
+    "options": ["{}", "[]", "()", "''"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Square brackets create lists.",
+    "fullExplanation": "An empty list is written as []. Curly braces create an empty dictionary, and quotes create a string.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_015",
+    "topicId": "python-lists",
+    "question": "What does 'mango' in fruits check?",
+    "options": ["Whether 'mango' is an item in the list", "Whether fruits is a string", "The length of fruits", "The first index only"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "in checks membership.",
+    "fullExplanation": "The in operator checks whether a value is present in a sequence such as a list.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_list_016",
+    "topicId": "python-lists",
+    "question": "What is the difference between remove() and pop()?",
+    "options": ["remove() deletes by value, pop() deletes by index", "remove() adds values, pop() sorts values", "They are exactly the same", "pop() only works on strings"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "remove and pop target items differently.",
+    "fullExplanation": "remove(value) removes the first matching value. pop(index) removes and returns an item by position, using the last item by default.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_list_017",
+    "topicId": "python-lists",
+    "question": "After scores = [1, 2]; scores.append(3), what is scores?",
+    "options": ["[1, 2, 3]", "[3, 1, 2]", "[1, 2]", "3"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "append() adds to the end.",
+    "fullExplanation": "append(3) adds 3 as a new last item, so the list becomes [1, 2, 3].",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_list_018",
+    "topicId": "python-lists",
+    "question": "What does items.pop(0) remove?",
+    "options": ["The first item", "The last item", "Every item", "No item"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Index 0 is the first item.",
+    "fullExplanation": "pop(0) removes and returns the item at index 0, which is the first item in the list.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_list_019",
+    "topicId": "python-lists",
+    "question": "What happens if remove() cannot find the value?",
+    "options": ["It raises ValueError", "It returns False", "It creates the value", "It removes the last item"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "remove() expects the value to exist.",
+    "fullExplanation": "list.remove(value) raises ValueError if the value is not present in the list.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_list_020",
+    "topicId": "python-lists",
+    "question": "Which code prints each fruit on its own line?",
+    "options": ["for fruit in fruits: print(fruit)", "print(each fruits)", "if fruits: print(fruit)", "fruits.print(each)"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "A for loop visits each list item.",
+    "fullExplanation": "for fruit in fruits assigns each item to fruit one by one, and print(fruit) displays each item.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_001",
+    "topicId": "python-functions",
+    "question": "Which keyword starts a function definition in Python?",
+    "options": ["function", "def", "func", "return"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Python uses def.",
+    "fullExplanation": "The def keyword begins a function definition, followed by the function name, parentheses, and a colon.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_002",
+    "topicId": "python-functions",
+    "question": "How do you call a function named greet?",
+    "options": ["greet", "call greet", "greet()", "def greet"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Use parentheses to call a function.",
+    "fullExplanation": "Writing greet() calls the function. Writing only greet refers to the function object without running it.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_003",
+    "topicId": "python-functions",
+    "question": "How does Python know which lines are inside a function body?",
+    "options": ["By indentation", "By uppercase names", "By comments", "By file extension"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Function bodies are indented.",
+    "fullExplanation": "The lines indented under the def line belong to the function body.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_004",
+    "topicId": "python-functions",
+    "question": "In def greet(name):, what is name?",
+    "options": ["An argument", "A parameter", "A return value", "A module"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Parameters are listed in the definition.",
+    "fullExplanation": "A parameter is a name in the function definition that receives an argument when the function is called.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_005",
+    "topicId": "python-functions",
+    "question": "In greet('Asha'), what is 'Asha'?",
+    "options": ["A parameter", "An argument", "A keyword", "A traceback"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Arguments are passed during calls.",
+    "fullExplanation": "An argument is the actual value supplied to a function when it is called.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_006",
+    "topicId": "python-functions",
+    "question": "What does return do in a function?",
+    "options": ["Displays text on the screen", "Sends a value back to the caller", "Repeats the function forever", "Deletes the function"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "return sends back a value.",
+    "fullExplanation": "return gives a result back to the code that called the function, so that result can be stored or used.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_007",
+    "topicId": "python-functions",
+    "question": "What is the difference between print() and return?",
+    "options": ["print displays a value, return gives a value back", "They are always the same", "return displays output, print stops the function", "print can only be used outside functions"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Printing and returning are different actions.",
+    "fullExplanation": "print() shows a value to the user. return sends a value back to the caller for further use.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_008",
+    "topicId": "python-functions",
+    "question": "What does a function return if it finishes without a return statement?",
+    "options": ["0", "False", "None", "The function name"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Missing return gives None.",
+    "fullExplanation": "If a function does not explicitly return a value, Python returns None automatically.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_009",
+    "topicId": "python-functions",
+    "question": "What happens when greet() is called for def greet(name='friend'): print(name)?",
+    "options": ["It prints friend", "It raises NameError", "It prints nothing", "It requires an argument"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The default parameter value is used.",
+    "fullExplanation": "Because name has the default value 'friend', calling greet() without an argument uses that default.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_010",
+    "topicId": "python-functions",
+    "question": "A variable created inside a function is usually what kind of variable?",
+    "options": ["Global only", "Local to that function", "A keyword", "A module"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Function variables are usually local.",
+    "fullExplanation": "A variable assigned inside a function usually exists only inside that function unless returned or explicitly made global.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_011",
+    "topicId": "python-functions",
+    "question": "What is printed by def add(a, b): return a + b; print(add(3, 4))?",
+    "options": ["3", "4", "7", "None"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "The function returns the sum.",
+    "fullExplanation": "add(3, 4) returns 7, and print() displays that returned value.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_012",
+    "topicId": "python-functions",
+    "question": "Why are functions useful?",
+    "options": ["They reduce repetition and organize code", "They make variables impossible", "They only work with strings", "They replace all loops"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Functions make code reusable.",
+    "fullExplanation": "Functions let you write logic once, name it clearly, and call it whenever needed.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_013",
+    "topicId": "python-functions",
+    "question": "What happens when Python reads a function definition?",
+    "options": ["The function body runs immediately", "The function is created but not called", "The program always stops", "The return value is printed"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Defining is different from calling.",
+    "fullExplanation": "A def statement creates the function. The body runs later when the function is called.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_014",
+    "topicId": "python-functions",
+    "question": "Which function header is syntactically correct?",
+    "options": ["def greet():", "def greet()", "function greet():", "greet def():"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "A def header needs a colon.",
+    "fullExplanation": "A Python function header uses def, the name, parentheses, and a colon: def greet():",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_015",
+    "topicId": "python-functions",
+    "question": "Which function definition accepts two parameters?",
+    "options": ["def add(a, b):", "def add(a b):", "def add[a, b]:", "def add = a + b:"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Parameters are comma-separated in parentheses.",
+    "fullExplanation": "Multiple parameters are written inside parentheses and separated with commas.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_016",
+    "topicId": "python-functions",
+    "question": "What happens after a return statement runs?",
+    "options": ["The function exits", "The same line repeats forever", "The returned value is ignored by force", "The function definition is deleted"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "return ends the current function call.",
+    "fullExplanation": "When return runs, the function sends back the value and exits that function call.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_017",
+    "topicId": "python-functions",
+    "question": "Which is a good function name style in Python?",
+    "options": ["calculate_total", "CalculateTotal", "calculate-total", "calculate total"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Function names usually use snake_case.",
+    "fullExplanation": "Python style usually uses lowercase words separated by underscores for function names, just like normal variable names.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_func_018",
+    "topicId": "python-functions",
+    "question": "Which call uses a keyword argument?",
+    "options": ["greet(name='Asha')", "greet('Asha')", "greet name 'Asha'", "def greet(name):"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Keyword arguments use parameter names.",
+    "fullExplanation": "name='Asha' passes the argument by naming the parameter, which is called a keyword argument.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_019",
+    "topicId": "python-functions",
+    "question": "What is wrong with result = add(2, 3) if add only prints a + b and does not return it?",
+    "options": ["result becomes None", "result becomes 5 twice", "add cannot have parameters", "Python converts result to a string"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Printing does not return a value.",
+    "fullExplanation": "If add() only prints and has no return statement, the call returns None, so result stores None.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_func_020",
+    "topicId": "python-functions",
+    "question": "Which code stores a returned value?",
+    "options": ["total = add(2, 3)", "return = add(2, 3)", "print = add", "def total = add(2, 3)"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Assign the function call result.",
+    "fullExplanation": "total = add(2, 3) calls the function and stores its returned value in total.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_001",
+    "topicId": "python-dictionaries",
+    "question": "What does a Python dictionary store?",
+    "options": ["Key-value pairs", "Only single characters", "Only repeated numbers", "Only booleans"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Dictionaries map keys to values.",
+    "fullExplanation": "A dictionary stores pairs where each key is used to look up its associated value.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_002",
+    "topicId": "python-dictionaries",
+    "question": "Which syntax creates a dictionary?",
+    "options": ["['name', 'Asha']", "{'name': 'Asha'}", "('name', 'Asha')", "'name' = 'Asha'"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Dictionaries use braces and colons.",
+    "fullExplanation": "A dictionary literal uses curly braces with key-value pairs separated by colons, such as {'name': 'Asha'}.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_003",
+    "topicId": "python-dictionaries",
+    "question": "What is student['name'] if student = {'name': 'Asha', 'age': 16}?",
+    "options": ["name", "Asha", "16", "KeyError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The key 'name' maps to 'Asha'.",
+    "fullExplanation": "Square brackets with a key look up that key's value. The value for 'name' is 'Asha'.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_004",
+    "topicId": "python-dictionaries",
+    "question": "Which method can safely provide a default for a missing key?",
+    "options": ["get()", "append()", "strip()", "split()"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "get() can return a default value.",
+    "fullExplanation": "dict.get(key, default) returns the default if the key is missing instead of raising KeyError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_005",
+    "topicId": "python-dictionaries",
+    "question": "What does student['age'] = 17 do if 'age' already exists?",
+    "options": ["Updates the age value", "Deletes the dictionary", "Raises SyntaxError", "Creates a list"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Assignment updates an existing key.",
+    "fullExplanation": "Assigning to an existing dictionary key replaces its old value with the new value.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_006",
+    "topicId": "python-dictionaries",
+    "question": "What does student['grade'] = 'A' do if 'grade' does not exist?",
+    "options": ["Adds a new key-value pair", "Raises KeyError", "Clears the dictionary", "Converts the dictionary to a string"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Assignment can add a new key.",
+    "fullExplanation": "Assigning to a missing dictionary key creates that key and stores the given value.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_007",
+    "topicId": "python-dictionaries",
+    "question": "What does data = {'score': 80, 'score': 90}; data['score'] give?",
+    "options": ["80", "90", "[80, 90]", "KeyError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Duplicate keys are overwritten.",
+    "fullExplanation": "Dictionary keys are unique. If the same key appears twice in a literal, the later value replaces the earlier one.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_dict_008",
+    "topicId": "python-dictionaries",
+    "question": "Which method is best for looping through keys and values together?",
+    "options": ["items()", "values()", "keys()", "append()"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "items() gives key-value pairs.",
+    "fullExplanation": "dict.items() returns pairs that can be unpacked in a loop, such as for key, value in student.items().",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_009",
+    "topicId": "python-dictionaries",
+    "question": "Which method returns the dictionary values?",
+    "options": ["keys()", "values()", "items()", "popitemsonly()"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "values() returns values.",
+    "fullExplanation": "dict.values() gives a view of the dictionary's values without the keys.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_010",
+    "topicId": "python-dictionaries",
+    "question": "Which method returns the dictionary keys?",
+    "options": ["keys()", "values()", "split()", "lower()"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "keys() returns keys.",
+    "fullExplanation": "dict.keys() gives a view of the dictionary's keys.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_011",
+    "topicId": "python-dictionaries",
+    "question": "What does pop('city') do in a dictionary?",
+    "options": ["Removes the key and returns its value", "Adds a city key", "Sorts all keys", "Counts characters"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "pop() removes by key.",
+    "fullExplanation": "dict.pop(key) removes that key-value pair and returns the removed value.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_dict_012",
+    "topicId": "python-dictionaries",
+    "question": "What error is likely from student['marks'] if 'marks' is missing?",
+    "options": ["NameError", "IndexError", "KeyError", "TypeError"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Missing dictionary keys raise KeyError.",
+    "fullExplanation": "Square-bracket lookup requires the key to exist. If 'marks' is missing, Python raises KeyError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_013",
+    "topicId": "python-dictionaries",
+    "question": "Which type cannot normally be used as a dictionary key?",
+    "options": ["str", "int", "list", "bool"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "Lists are mutable.",
+    "fullExplanation": "Dictionary keys must be hashable. Lists are mutable and not hashable, so they cannot be used as dictionary keys.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_dict_014",
+    "topicId": "python-dictionaries",
+    "question": "What does len({'a': 1, 'b': 2}) return?",
+    "options": ["1", "2", "3", "4"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "len() counts key-value pairs.",
+    "fullExplanation": "The dictionary has two keys, 'a' and 'b', so len() returns 2.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_015",
+    "topicId": "python-dictionaries",
+    "question": "Which statement about dictionaries is true?",
+    "options": ["They are mutable", "They use numeric indexes only", "They cannot store strings", "They must have duplicate keys"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Dictionaries can be changed.",
+    "fullExplanation": "Dictionaries are mutable, so you can add, update, and remove key-value pairs.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_016",
+    "topicId": "python-dictionaries",
+    "question": "What does 'name' in student check by default?",
+    "options": ["Whether 'name' is a key", "Whether 'name' is a value", "Whether student is a list", "The number of keys"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "in checks dictionary keys by default.",
+    "fullExplanation": "For dictionaries, the in operator checks whether the given value is present as a key.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_dict_017",
+    "topicId": "python-dictionaries",
+    "question": "Which expression creates an empty dictionary?",
+    "options": ["[]", "{}", "()", "''"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "Empty braces create a dictionary.",
+    "fullExplanation": "{} creates an empty dictionary. [] creates an empty list.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_dict_018",
+    "topicId": "python-dictionaries",
+    "question": "What does for key in student: loop over by default?",
+    "options": ["The keys", "The values only", "The indexes 0 to n", "Nothing"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Dictionary iteration defaults to keys.",
+    "fullExplanation": "Looping directly over a dictionary gives one key at a time.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_dict_019",
+    "topicId": "python-dictionaries",
+    "question": "Which code prints both keys and values?",
+    "options": ["for key, value in student.items(): print(key, value)", "for key, value in student: print(key, value)", "for value in student.keys(): print(key, value)", "student.print(items)"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "items() provides pairs for unpacking.",
+    "fullExplanation": "student.items() returns key-value pairs, so the loop can unpack each pair into key and value.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_dict_020",
+    "topicId": "python-dictionaries",
+    "question": "When is a dictionary a good choice?",
+    "options": ["When data has meaningful labels such as name and age", "When you only need a single character", "When all values must be unnamed", "When code must avoid keys"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Dictionaries are good for labeled data.",
+    "fullExplanation": "A dictionary is useful when each value has a meaningful key, such as a student's name, age, grade, or city.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_001",
+    "topicId": "python-basic-errors",
+    "question": "What is the main purpose of an error message?",
+    "options": ["To help identify what went wrong", "To delete the program", "To hide line numbers", "To convert strings to integers"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Errors guide debugging.",
+    "fullExplanation": "An error message gives clues such as the error type and location so you can fix the problem.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_002",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from if score >= 50 with no colon?",
+    "options": ["SyntaxError", "NameError", "TypeError", "KeyError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Missing punctuation breaks Python syntax.",
+    "fullExplanation": "Python cannot understand the structure of the if statement without the required colon, so it raises SyntaxError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_003",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from print(total) before total is assigned?",
+    "options": ["SyntaxError", "NameError", "IndexError", "ValueError"],
+    "correctAnswerIndex": 1,
+    "shortExplanation": "The name total is not defined.",
+    "fullExplanation": "A NameError occurs when Python tries to use a name that does not exist in the current accessible scope.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_004",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from '4' + 2?",
+    "options": ["TypeError", "NameError", "KeyError", "IndexError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The operation mixes incompatible types.",
+    "fullExplanation": "Python cannot add a string and an integer directly, so it raises TypeError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_005",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from int('sixteen')?",
+    "options": ["NameError", "SyntaxError", "ValueError", "IndexError"],
+    "correctAnswerIndex": 2,
+    "shortExplanation": "The value cannot be converted to an int.",
+    "fullExplanation": "The type passed to int() is a string, which is allowed, but the specific value 'sixteen' is not valid numeric text.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_006",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from items = ['pen', 'book']; items[3]?",
+    "options": ["IndexError", "KeyError", "NameError", "SyntaxError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The list index is outside the valid range.",
+    "fullExplanation": "The list has indexes 0 and 1 only. Accessing index 3 raises IndexError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_007",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from student = {'name': 'Asha'}; student['marks']?",
+    "options": ["KeyError", "IndexError", "TypeError", "ValueError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The dictionary key is missing.",
+    "fullExplanation": "A missing dictionary key accessed with square brackets raises KeyError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_008",
+    "topicId": "python-basic-errors",
+    "question": "What part of a traceback usually helps you find where the error happened?",
+    "options": ["The line number", "The computer brand", "The browser history", "The file size only"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Tracebacks include line numbers.",
+    "fullExplanation": "A traceback points to the file and line number where Python noticed the problem.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_009",
+    "topicId": "python-basic-errors",
+    "question": "When reading a traceback, what is often helpful to check first?",
+    "options": ["The bottom line with the error type", "Only the first character", "The longest word", "The operating system version"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The bottom line names the error type.",
+    "fullExplanation": "The bottom of a traceback usually shows the error type and message, which are the best clues for the fix.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_010",
+    "topicId": "python-basic-errors",
+    "question": "Which statement about SyntaxError is true?",
+    "options": ["The program must be syntactically fixed before it can run", "It only happens after successful input", "It means a dictionary key is missing", "It always means a number is too large"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Syntax must be valid first.",
+    "fullExplanation": "Python needs valid code structure before it can execute the program. SyntaxError prevents normal execution.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_err_011",
+    "topicId": "python-basic-errors",
+    "question": "Which error is likely from print('Hi' with the closing parenthesis missing?",
+    "options": ["SyntaxError", "NameError", "KeyError", "No error"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The code structure is incomplete.",
+    "fullExplanation": "A missing closing parenthesis makes the code syntactically incomplete, so Python raises SyntaxError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_012",
+    "topicId": "python-basic-errors",
+    "question": "Which expression runs without the listed beginner errors?",
+    "options": ["int('12')", "int('abc')", "'3' + 4", "unknown_name + 1"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "'12' can be converted to an integer.",
+    "fullExplanation": "int('12') succeeds because the string contains valid integer text. The other options raise common beginner errors.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_err_013",
+    "topicId": "python-basic-errors",
+    "question": "Which fix is best for a TypeError from adding input text to a number?",
+    "options": ["Convert the input with int() or float()", "Delete every print statement", "Use a missing key", "Remove all indentation"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Input text must be converted for math.",
+    "fullExplanation": "Since input() returns strings, convert numeric input before adding it to numbers.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_014",
+    "topicId": "python-basic-errors",
+    "question": "Which error often comes from misspelling a variable name?",
+    "options": ["NameError", "ValueError", "IndexError", "KeyError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "A misspelled name may be undefined.",
+    "fullExplanation": "If you assign total_score but later write total_socre, Python sees a different undefined name and raises NameError.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_015",
+    "topicId": "python-basic-errors",
+    "question": "Which error is most connected to list and string positions?",
+    "options": ["IndexError", "KeyError", "SyntaxError", "NameError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Indexes are positions.",
+    "fullExplanation": "IndexError happens when code asks for a position that does not exist in an indexed sequence such as a list or string.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_016",
+    "topicId": "python-basic-errors",
+    "question": "Which error is most connected to dictionary lookups?",
+    "options": ["KeyError", "IndexError", "IndentationError", "ValueError"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Dictionaries use keys.",
+    "fullExplanation": "KeyError happens when code tries to access a dictionary key that is not present.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "py_err_017",
+    "topicId": "python-basic-errors",
+    "question": "What should you check near the line number for a SyntaxError?",
+    "options": ["Missing colons, quotes, or parentheses", "Only internet connection", "Only file size", "Whether variables are in a list"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Syntax errors often involve missing punctuation.",
+    "fullExplanation": "For SyntaxError, check the shown line and sometimes the line before it for missing punctuation or unfinished strings.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_err_018",
+    "topicId": "python-basic-errors",
+    "question": "Which line is most likely to raise ValueError?",
+    "options": ["int('ten')", "print(score)", "items[9]", "student['age']"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "'ten' is not valid integer text.",
+    "fullExplanation": "int('ten') uses a valid conversion function, but the specific value cannot be converted into an integer.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_err_019",
+    "topicId": "python-basic-errors",
+    "question": "Why can the real cause of a SyntaxError be on the line before the highlighted one?",
+    "options": ["An earlier missing quote or parenthesis can confuse the next line", "Python never reads the highlighted line", "Tracebacks always lie", "SyntaxError only happens in comments"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "Unclosed syntax can spill into the next line.",
+    "fullExplanation": "If a quote, parenthesis, bracket, or colon is missing, Python may only notice the problem when it reaches the following line.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "py_err_020",
+    "topicId": "python-basic-errors",
+    "question": "What is a careful first step when debugging?",
+    "options": ["Read the exact error type and message", "Randomly change many lines", "Delete the whole file", "Ignore the line number"],
+    "correctAnswerIndex": 0,
+    "shortExplanation": "The message is the clue.",
+    "fullExplanation": "Reading the error type, message, and line number helps you make a focused fix instead of guessing.",
+    "difficulty": "easy"
+  }
+]

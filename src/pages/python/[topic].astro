@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TopicLayout from "../../layouts/TopicLayout.astro";
+import topics from "../../data/topics.json";
+
+export async function getStaticPaths() {
+  const pages = Object.values(import.meta.glob("../../content/python/*.md", { eager: true }));
+
+  return pages.map((page) => ({
+    params: { topic: page.frontmatter.slug },
+    props: { page }
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = page;
+const topic = topics.find((item) => item.id === page.frontmatter.topicId);
+
+if (!topic) {
+  throw new Error(`Missing topic metadata for ${page.frontmatter.topicId}`);
+}
+---
+
+<BaseLayout
+  title={page.frontmatter.title}
+  description={page.frontmatter.description}
+  currentPath={topic.contentUrl}
+>
+  <TopicLayout topic={topic} topics={topics}>
+    <Content />
+  </TopicLayout>
+</BaseLayout>
