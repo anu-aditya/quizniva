@@ -1,12 +1,13 @@
 ---
-const { topics = [] } = Astro.props;
+const { topics = [], subjectName = "Python", courseUrl = "/python" } = Astro.props;
+const firstTopic = topics[0] ?? null;
 ---
 
 <section class="progress-panel" data-progress-panel aria-live="polite">
   <div class="progress-panel__copy">
     <p class="eyebrow">Saved progress</p>
     <h2 data-progress-title>Welcome back</h2>
-    <p data-progress-copy>Your Python practice progress is saved on this device.</p>
+    <p data-progress-copy>Your {subjectName} practice progress is saved on this device.</p>
   </div>
 
   <div class="progress-meter" aria-hidden="true">
@@ -21,16 +22,19 @@ const { topics = [] } = Astro.props;
   </div>
 
   <div class="button-row">
-    <a class="button button--primary" href="/python/variables" data-progress-continue>Continue learning</a>
-    <a class="button button--ghost" href="/python" data-progress-practice>Open course</a>
+    <a class="button button--primary" href={firstTopic?.contentUrl ?? courseUrl} data-progress-continue>Continue learning</a>
+    <a class="button button--ghost" href={courseUrl} data-progress-practice>Open course</a>
   </div>
 </section>
 
-<script define:vars={{ courseTopics: topics }}>
+<script define:vars={{ courseTopics: topics, subjectName }}>
   const STORAGE_KEY = "quizNivaProgress";
   const DRAFT_STORAGE_KEY = "quizNivaQuizDrafts";
-  const totalQuestionsPerQuiz = 20;
   const topicsById = new Map(courseTopics.map((topic) => [topic.id, topic]));
+
+  function getQuestionCount(topic) {
+    return Number(topic?.questionCount ?? 20);
+  }
 
   function loadProgress() {
     try {
@@ -140,7 +144,7 @@ const { topics = [] } = Astro.props;
 
       if (completed.has(topicId)) {
         state = "completed";
-        label = bestScore ? `Completed - best ${bestScore}/${totalQuestionsPerQuiz}` : "Completed";
+        label = bestScore ? `Completed - best ${bestScore}/${getQuestionCount(topicsById.get(topicId))}` : "Completed";
       } else if (inProgress.has(topicId)) {
         state = "in-progress";
         label = "In progress";
@@ -167,7 +171,8 @@ const { topics = [] } = Astro.props;
     const panel = document.querySelector("[data-progress-panel]");
     const completedTopics = getCompletedTopics(savedProgress);
     const inProgressTopics = getInProgressTopics(savedProgress, drafts);
-    const lastVisitedTopic = getKnownTopic(savedProgress.lastVisitedTopic) ?? getKnownTopic(inProgressTopics[0]) ?? getFallbackTopic();
+    const savedLastVisitedTopic = getKnownTopic(savedProgress.lastVisitedTopic);
+    const lastVisitedTopic = savedLastVisitedTopic ?? getKnownTopic(inProgressTopics[0]) ?? getFallbackTopic();
     const best = getBestScore(savedProgress);
     const completionPercent = Math.round((completedTopics.length / courseTopics.length) * 100);
 
@@ -175,23 +180,25 @@ const { topics = [] } = Astro.props;
       return;
     }
 
+    const hasKnownBestScore = Object.keys(savedProgress.bestScores ?? {}).some((topicId) => topicsById.has(topicId));
+    const hasKnownAttempt = Object.keys(savedProgress.attempts ?? {}).some((topicId) => topicsById.has(topicId));
     const hasSavedProgress = Boolean(
-      savedProgress.lastVisitedTopic ||
+      savedLastVisitedTopic ||
       completedTopics.length ||
       inProgressTopics.length ||
-      Object.keys(savedProgress.bestScores ?? {}).length ||
-      Object.keys(savedProgress.attempts ?? {}).length
+      hasKnownBestScore ||
+      hasKnownAttempt
     );
 
     panel.querySelector("[data-progress-title]").textContent = hasSavedProgress ? "Welcome back" : "Your progress";
     panel.querySelector("[data-progress-copy]").textContent = hasSavedProgress
       ? `Last visited: ${lastVisitedTopic.title}. You have completed ${completedTopics.length} of ${courseTopics.length} quizzes on this device.`
-      : `Start any lesson or quiz and this device will remember where you left off.`;
+      : `Start any ${subjectName} lesson or quiz and this device will remember where you left off.`;
     panel.querySelector("[data-progress-completed]").textContent = `${completedTopics.length}/${courseTopics.length}`;
     panel.querySelector("[data-progress-in-progress]").textContent = String(inProgressTopics.length);
     panel.querySelector("[data-progress-attempted]").textContent = String(getAttemptedCount(savedProgress));
     panel.querySelector("[data-progress-best]").textContent = best.topic
-      ? `${best.score}/${totalQuestionsPerQuiz}`
+      ? `${best.score}/${getQuestionCount(best.topic)}`
       : "0";
     panel.querySelector("[data-progress-bar]").style.width = `${completionPercent}%`;
 

@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CourseProgress from "../../components/CourseProgress.astro";
+import {
+  computerFundamentalsLessons,
+  computerFundamentalsTopicGroups
+} from "../../data/computerFundamentalsCourse.js";
+
+const firstLesson = computerFundamentalsLessons[0];
+const totalLessons = computerFundamentalsLessons.length;
+const totalQuestions = computerFundamentalsTopicGroups.reduce((total, group) => total + group.questionCount, 0);
+---
+
+<BaseLayout
+  title="Computer Fundamentals Notes And Quizzes"
+  description="Learn hardware basics, CPU, RAM, storage, operating systems, internet basics, binary, networking, and cybersecurity with short notes and MCQs."
+  currentPath="/computer-fundamentals"
+>
+  <section class="page-intro section">
+    <p class="eyebrow">Computer Fundamentals</p>
+    <h1>Computer Fundamentals Notes And MCQ Practice</h1>
+    <p>
+      Build the base knowledge behind everyday computing with 9 topic groups. Each topic contains focused lessons, and every lesson has its own explanation page and MCQ quiz.
+    </p>
+    <div class="button-row">
+      <a class="button button--primary" href={firstLesson?.contentUrl ?? "#"} data-progress-continue-link>Continue learning</a>
+      <a class="button button--ghost" href={firstLesson?.quizUrl ?? "#"}>Take first quiz</a>
+      <a class="button button--ghost" href="/subjects">All subjects</a>
+    </div>
+  </section>
+
+  <CourseProgress topics={computerFundamentalsLessons} subjectName="Computer Fundamentals" courseUrl="/computer-fundamentals" />
+
+  <section class="section section--tight" aria-labelledby="topic-path-title">
+    <div class="section-heading">
+      <p class="eyebrow">Topic path</p>
+      <h2 id="topic-path-title">9 Computer Fundamentals Topics</h2>
+      <p>Open a topic to see its lessons. Each lesson has a reading page and a separate quiz window.</p>
+    </div>
+
+    <div class="course-level-grid">
+      {computerFundamentalsTopicGroups.map((group) => (
+        <article class="course-level-card">
+          <p class="eyebrow">Topic {group.order}</p>
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+          <div class="course-level-card__meta">
+            <span>{group.lessonCount} lessons</span>
+            <span>{group.questionCount} MCQs</span>
+          </div>
+          <div class="course-level-card__actions">
+            <a class="button button--primary" href={group.contentUrl}>Open topic</a>
+            <a class="button button--ghost" href={group.lessons[0]?.contentUrl ?? group.contentUrl}>First lesson</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--muted course-index" aria-labelledby="computer-index-title">
+    <div class="section-heading">
+      <p class="eyebrow">Syllabus</p>
+      <h2 id="computer-index-title">All Topics, Lessons, And Quizzes</h2>
+      <p>{computerFundamentalsTopicGroups.length} topics, {totalLessons} lessons, and {totalQuestions} MCQs covering the basic parts, language, and safety habits of computing.</p>
+    </div>
+
+    {computerFundamentalsTopicGroups.map((group) => (
+      <details class="lesson-group">
+        <summary>
+          <span>
+            <strong>Topic {group.order}: {group.title}</strong>
+            <small>{group.description}</small>
+          </span>
+          <span>{group.lessonCount} lessons</span>
+        </summary>
+        <div class="lesson-group__content">
+          <ol class="lesson-list">
+            {group.lessons.map((lesson) => (
+              <li class="lesson-row" data-topic-id={lesson.id}>
+                <a class="lesson-row__main" href={lesson.contentUrl}>
+                  <span class="lesson-row__order">{lesson.lessonOrder}</span>
+                  <span>
+                    <strong>{lesson.title}</strong>
+                    <small>{lesson.description}</small>
+                    <small class="lesson-row__status" data-progress-status>Not started</small>
+                  </span>
+                </a>
+                <a class="lesson-row__quiz" href={lesson.quizUrl} aria-label={`Take quiz for ${lesson.title}`}>Take quiz</a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </details>
+    ))}
+  </section>
+</BaseLayout>

@@ -2,16 +2,22 @@
 import RelatedTopics from "../components/RelatedTopics.astro";
 
 const { topic, topics } = Astro.props;
+const courseUrl = `/${topic.contentUrl.split("/").filter(Boolean)[0]}`;
+const questionCount = topic.questionCount ?? 20;
+const lessonLabel = topic.subject === "Computer Fundamentals"
+  ? `Computer Fundamentals Topic ${topic.topicGroupOrder}: ${topic.topicGroup} - Lesson ${topic.lessonOrder}`
+  : `${topic.subject} ${topic.difficulty} Lesson ${topic.order}`;
+const detailLabel = topic.subject === "Computer Fundamentals" ? "Topic" : "Level";
 ---
 
 <article class="topic-article">
   <header class="topic-header">
-    <p class="eyebrow">Python {topic.difficulty} Lesson {topic.order}</p>
+    <p class="eyebrow">{lessonLabel}</p>
     <h1>{topic.title}</h1>
     <p>{topic.description}</p>
     <div class="topic-header__actions">
       <a class="button button--primary" href={topic.quizUrl}>Start quiz</a>
-      <a class="button button--ghost" href="/python">Course index</a>
+      <a class="button button--ghost" href={courseUrl}>Course index</a>
     </div>
   </header>
 
@@ -25,7 +31,7 @@ const { topic, topics } = Astro.props;
         <h2>Lesson Details</h2>
         <dl>
           <div>
-            <dt>Level</dt>
+            <dt>{detailLabel}</dt>
             <dd>{topic.difficulty}</dd>
           </div>
           <div>
@@ -34,14 +40,14 @@ const { topic, topics } = Astro.props;
           </div>
           <div>
             <dt>Practice</dt>
-            <dd>20 MCQs</dd>
+            <dd>{questionCount} MCQs</dd>
           </div>
         </dl>
       </div>
     </aside>
   </div>
 
-  <RelatedTopics topics={topics} currentId={topic.id} />
+  <RelatedTopics topics={topics} currentId={topic.id} courseUrl={courseUrl} />
 </article>
 
 <script define:vars={{ topicId: topic.id }}>

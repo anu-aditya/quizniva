@@ -4,12 +4,22 @@ import QuizComponent from "../../components/QuizComponent.jsx";
 import beginnerQuestions from "../../data/questions.json";
 import intermediateQuestions from "../../data/intermediateQuestions.js";
 import advancedQuestions from "../../data/advancedQuestions.js";
+import {
+  computerFundamentalsLessons,
+  computerFundamentalsQuestions
+} from "../../data/computerFundamentalsCourse.js";
 import topics from "../../data/topics.json";
 
 export function getStaticPaths() {
-  const questions = [...beginnerQuestions, ...intermediateQuestions, ...advancedQuestions];
+  const allTopics = [...topics, ...computerFundamentalsLessons];
+  const questions = [
+    ...beginnerQuestions,
+    ...intermediateQuestions,
+    ...advancedQuestions,
+    ...computerFundamentalsQuestions
+  ];
 
-  return topics
+  return allTopics
     .filter((topic) => questions.some((question) => question.topicId === topic.id))
     .map((topic) => ({
       params: { topic: topic.quizSlug },
@@ -21,8 +31,9 @@ export function getStaticPaths() {
 }
 
 const { topic, topicQuestions } = Astro.props;
-const nextTopic = topics
-  .filter((item) => item.status === "ready" && item.order > topic.order)
+const allTopics = [...topics, ...computerFundamentalsLessons];
+const nextTopic = allTopics
+  .filter((item) => item.status === "ready" && item.subject === topic.subject && item.order > topic.order)
   .sort((a, b) => a.order - b.order)[0] ?? null;
 ---
 
@@ -33,7 +44,7 @@ const nextTopic = topics
 >
   <section class="quiz-page section">
     <div class="quiz-page__intro">
-      <p class="eyebrow">Python quiz</p>
+      <p class="eyebrow">{topic.subject} quiz</p>
       <h1>{topic.title} MCQ Practice</h1>
       <p>
         Answer all questions, submit once, then review every explanation. No login is needed; your best score is saved only in this browser.

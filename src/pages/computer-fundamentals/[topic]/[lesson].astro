@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import TopicLayout from "../../../layouts/TopicLayout.astro";
+import {
+  computerFundamentalsLessons,
+  computerFundamentalsTopicGroups
+} from "../../../data/computerFundamentalsCourse.js";
+
+export function getStaticPaths() {
+  return computerFundamentalsTopicGroups.flatMap((group) =>
+    group.lessons.map((lesson) => ({
+      params: { topic: group.slug, lesson: lesson.slug },
+      props: { lesson }
+    }))
+  );
+}
+
+const { lesson } = Astro.props;
+---
+
+<BaseLayout
+  title={lesson.title}
+  description={lesson.description}
+  currentPath={lesson.contentUrl}
+>
+  <TopicLayout topic={lesson} topics={computerFundamentalsLessons}>
+    {lesson.sections.map((section) => (
+      <>
+        <h2>{section.heading}</h2>
+        {section.body.map((paragraph) => <p>{paragraph}</p>)}
+        {section.bullets?.length > 0 && (
+          <ul>
+            {section.bullets.map((item) => <li>{item}</li>)}
+          </ul>
+        )}
+      </>
+    ))}
+
+    <h2>Quick Summary</h2>
+    <ul>
+      {lesson.summary.map((item) => <li>{item}</li>)}
+    </ul>
+
+    <h2>Practice Quiz</h2>
+    <p>Now practice this lesson with MCQs and explanations:</p>
+    <p><a class="text-link" href={lesson.quizUrl}>Start the {lesson.title} quiz</a></p>
+  </TopicLayout>
+</BaseLayout>

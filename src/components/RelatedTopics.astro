@@ -1,7 +1,10 @@
 ---
-const { topics = [], currentId } = Astro.props;
-const readyTopics = topics.filter((topic) => topic.status === "ready").sort((a, b) => a.order - b.order);
+const { topics = [], currentId, courseUrl: providedCourseUrl } = Astro.props;
 const current = topics.find((topic) => topic.id === currentId);
+const courseUrl = providedCourseUrl ?? `/${current?.contentUrl?.split("/").filter(Boolean)[0] ?? "subjects"}`;
+const readyTopics = topics
+  .filter((topic) => topic.status === "ready" && (!current || topic.subject === current.subject))
+  .sort((a, b) => a.order - b.order);
 const previous = readyTopics.filter((topic) => topic.order < current?.order).at(-1);
 const next = readyTopics.find((topic) => topic.order > current?.order);
 ---
@@ -21,9 +24,9 @@ const next = readyTopics.find((topic) => topic.order > current?.order);
       </div>
     )}
 
-    <a class="related-link" href={current?.quizUrl ?? "/python"}>
+    <a class="related-link" href={current?.quizUrl ?? courseUrl}>
       <span>Practice</span>
-      <strong>{current?.title ?? "Python"} Quiz</strong>
+      <strong>{current?.title ?? "Course"} Quiz</strong>
     </a>
 
     {next ? (
@@ -32,7 +35,7 @@ const next = readyTopics.find((topic) => topic.order > current?.order);
         <strong>{next.title}</strong>
       </a>
     ) : (
-      <a class="related-link" href="/python">
+      <a class="related-link" href={courseUrl}>
         <span>Next</span>
         <strong>Course Index</strong>
       </a>

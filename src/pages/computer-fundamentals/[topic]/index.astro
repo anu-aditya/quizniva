@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CourseProgress from "../../../components/CourseProgress.astro";
+import { computerFundamentalsTopicGroups } from "../../../data/computerFundamentalsCourse.js";
+
+export function getStaticPaths() {
+  return computerFundamentalsTopicGroups.map((group) => ({
+    params: { topic: group.slug },
+    props: { group }
+  }));
+}
+
+const { group } = Astro.props;
+const firstLesson = group.lessons[0];
+---
+
+<BaseLayout
+  title={`${group.title} Lessons`}
+  description={group.description}
+  currentPath={group.contentUrl}
+>
+  <section class="page-intro section">
+    <p class="eyebrow">Computer Fundamentals {group.order}</p>
+    <h1>{group.title}</h1>
+    <p>{group.description}</p>
+    <div class="button-row">
+      <a class="button button--primary" href={firstLesson?.contentUrl ?? "#"} data-progress-continue-link>Start topic</a>
+      <a class="button button--ghost" href={firstLesson?.quizUrl ?? "#"}>First quiz</a>
+      <a class="button button--ghost" href="/computer-fundamentals">All topics</a>
+    </div>
+  </section>
+
+  <CourseProgress topics={group.lessons} subjectName={group.title} courseUrl={group.contentUrl} />
+
+  <section class="section section--muted course-index" aria-labelledby="topic-lessons-title">
+    <div class="section-heading">
+      <p class="eyebrow">Lessons</p>
+      <h2 id="topic-lessons-title">{group.title} Lessons And Quizzes</h2>
+      <p>Each lesson has an explanation page and a matching MCQ quiz.</p>
+    </div>
+
+    <details class="lesson-group" open>
+      <summary>
+        <span>
+          <strong> {group.order}: {group.title}</strong>
+          <small>{group.description}</small>
+        </span>
+        <span>{group.lessonCount} lessons</span>
+      </summary>
+      <div class="lesson-group__content">
+        <ol class="lesson-list">
+          {group.lessons.map((lesson) => (
+            <li class="lesson-row" data-topic-id={lesson.id}>
+              <a class="lesson-row__main" href={lesson.contentUrl}>
+                <span class="lesson-row__order">{lesson.lessonOrder}</span>
+                <span>
+                  <strong>{lesson.title}</strong>
+                  <small>{lesson.description}</small>
+                  <small class="lesson-row__status" data-progress-status>Not started</small>
+                </span>
+              </a>
+              <a class="lesson-row__quiz" href={lesson.quizUrl} aria-label={`Take quiz for ${lesson.title}`}>Take quiz</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </details>
+  </section>
+</BaseLayout>

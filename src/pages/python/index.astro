@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import CourseProgress from "../../components/CourseProgress.astro";
 import topics from "../../data/topics.json";
 
-const pythonTopics = [...topics].sort((a, b) => a.order - b.order);
+const pythonTopics = topics.filter((topic) => topic.subject === "Python").sort((a, b) => a.order - b.order);
 const readyTopics = pythonTopics.filter((topic) => topic.status === "ready");
 const beginnerTopics = readyTopics.filter((topic) => topic.difficulty === "Beginner");
 const intermediateTopics = readyTopics.filter((topic) => topic.difficulty === "Intermediate");
@@ -32,7 +32,7 @@ const advancedStart = advancedTopics[0];
     </div>
   </section>
 
-  <CourseProgress topics={readyTopics} />
+  <CourseProgress topics={readyTopics} subjectName="Python" courseUrl="/python" />
 
   <section class="section section--tight" aria-labelledby="topics-title">
     <div class="section-heading">

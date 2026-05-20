@@ -3,18 +3,60 @@ import { useEffect, useMemo, useState } from "react";
 const STORAGE_KEY = "quizNivaProgress";
 const DRAFT_STORAGE_KEY = "quizNivaQuizDrafts";
 
+function isRecord(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function getDefaultProgress() {
+  return {
+    completedTopics: [],
+    bestScores: {},
+    attempts: {},
+    lastVisitedTopic: null,
+    visitedTopics: []
+  };
+}
+
+function normalizeStringArray(value) {
+  return Array.isArray(value) ? value.filter((item) => typeof item === "string") : [];
+}
+
+function normalizeProgress(value) {
+  if (!isRecord(value)) {
+    return getDefaultProgress();
+  }
+
+  return {
+    completedTopics: normalizeStringArray(value.completedTopics),
+    bestScores: isRecord(value.bestScores) ? value.bestScores : {},
+    attempts: isRecord(value.attempts) ? value.attempts : {},
+    lastVisitedTopic: typeof value.lastVisitedTopic === "string" ? value.lastVisitedTopic : null,
+    visitedTopics: normalizeStringArray(value.visitedTopics)
+  };
+}
+
+function normalizeDraft(value) {
+  if (!isRecord(value)) {
+    return null;
+  }
+
+  return {
+    selectedAnswers: isRecord(value.selectedAnswers) ? value.selectedAnswers : {},
+    skippedQuestions: isRecord(value.skippedQuestions) ? value.skippedQuestions : {},
+    currentIndex: Number.isInteger(value.currentIndex) ? value.currentIndex : 0
+  };
+}
+
 function loadProgress() {
   if (typeof window === "undefined") {
-    return { completedTopics: [], bestScores: {}, attempts: {}, lastVisitedTopic: null };
+    return getDefaultProgress();
   }
 
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    return saved
-      ? JSON.parse(saved)
-      : { completedTopics: [], bestScores: {}, attempts: {}, lastVisitedTopic: null };
+    return normalizeProgress(saved ? JSON.parse(saved) : null);
   } catch {
-    return { completedTopics: [], bestScores: {}, attempts: {}, lastVisitedTopic: null };
+    return getDefaultProgress();
   }
 }
 
@@ -33,17 +75,22 @@ function loadQuizDrafts() {
 
   try {
     const saved = window.localStorage.getItem(DRAFT_STORAGE_KEY);
-    return saved ? JSON.parse(saved) : {};
+    const drafts = saved ? JSON.parse(saved) : {};
+    return isRecord(drafts) ? drafts : {};
   } catch {
     return {};
   }
 }
 
 function loadQuizDraft(topicId) {
-  return loadQuizDrafts()[topicId] ?? null;
+  return normalizeDraft(loadQuizDrafts()[topicId]);
 }
 
 function saveQuizDraft(topicId, draft) {
+  if (!topicId) {
+    return;
+  }
+
   try {
     const drafts = loadQuizDrafts();
     drafts[topicId] = draft;
@@ -54,6 +101,10 @@ function saveQuizDraft(topicId, draft) {
 }
 
 function clearQuizDraft(topicId) {
+  if (!topicId) {
+    return;
+  }
+
   try {
     const drafts = loadQuizDrafts();
     delete drafts[topicId];
@@ -64,12 +115,13 @@ function clearQuizDraft(topicId) {
 }
 
 function calculateResult(questions, selectedAnswers, skippedQuestions) {
+  const quizQuestions = Array.isArray(questions) ? questions : [];
   let correct = 0;
   let skipped = 0;
   let wrong = 0;
   let unanswered = 0;
 
-  const reviewedQuestions = questions.map((question) => {
+  const reviewedQuestions = quizQuestions.map((question) => {
     const selected = selectedAnswers[question.id];
     const isSkipped = skippedQuestions[question.id] === true;
     const isAnswered = selected !== undefined;
@@ -97,17 +149,24 @@ function calculateResult(questions, selectedAnswers, skippedQuestions) {
   });
 
   return {
-    total: questions.length,
+    total: quizQuestions.length,
     correct,
     wrong,
     skipped,
     unanswered,
-    accuracy: Math.round((correct / questions.length) * 100),
+    accuracy: quizQuestions.length ? Math.round((correct / quizQuestions.length) * 100) : 0,
     reviewedQuestions
   };
 }
 
 export default function QuizComponent({ topic, questions, nextTopic = null }) {
+  const quizQuestions = Array.isArray(questions) ? questions : [];
+  const topicId = typeof topic?.id === "string" ? topic.id : "";
+  const topicTitle = typeof topic?.title === "string" ? topic.title : "Topic";
+  const contentUrl = typeof topic?.contentUrl === "string" ? topic.contentUrl : "/subjects";
+  const courseRoot = contentUrl.split("/").filter(Boolean)[0] ?? "subjects";
+  const courseUrl = `/${courseRoot}`;
+  const subjectName = topic?.subject ?? "this course";
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [skippedQuestions, setSkippedQuestions] = useState({});
@@ -115,38 +174,45 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
   const [bestScore, setBestScore] = useState(null);
   const [draftLoaded, setDraftLoaded] = useState(false);
 
-  const currentQuestion = questions[currentIndex];
+  const currentQuestion = quizQuestions[currentIndex] ?? null;
   const answeredCount = Object.keys(selectedAnswers).length;
   const skippedCount = Object.keys(skippedQuestions).length;
   const completedCount = answeredCount + skippedCount;
-  const remainingCount = questions.length - completedCount;
+  const remainingCount = Math.max(quizQuestions.length - completedCount, 0);
   const currentAnswered = selectedAnswers[currentQuestion?.id] !== undefined;
   const currentSkipped = skippedQuestions[currentQuestion?.id] === true;
   const currentCompleted = currentAnswered || currentSkipped;
 
   const progressWidth = useMemo(() => {
-    return `${Math.round(((currentIndex + 1) / questions.length) * 100)}%`;
-  }, [currentIndex, questions.length]);
+    if (!quizQuestions.length) {
+      return "0%";
+    }
+
+    return `${Math.round(((currentIndex + 1) / quizQuestions.length) * 100)}%`;
+  }, [currentIndex, quizQuestions.length]);
 
   useEffect(() => {
     setDraftLoaded(false);
     const progress = loadProgress();
-    setBestScore(progress.bestScores?.[topic.id] ?? null);
+    setBestScore(progress.bestScores?.[topicId] ?? null);
     const visitedTopics = new Set(progress.visitedTopics ?? []);
-    visitedTopics.add(topic.id);
+    if (topicId) {
+      visitedTopics.add(topicId);
+    }
     saveProgress({
       ...progress,
-      lastVisitedTopic: topic.id,
+      lastVisitedTopic: topicId || progress.lastVisitedTopic,
       visitedTopics: Array.from(visitedTopics)
     });
 
-    const draft = loadQuizDraft(topic.id);
+    const draft = loadQuizDraft(topicId);
     if (draft) {
       setSelectedAnswers(draft.selectedAnswers ?? {});
       setSkippedQuestions(draft.skippedQuestions ?? {});
+      const maxIndex = Math.max(quizQuestions.length - 1, 0);
       setCurrentIndex(
         Number.isInteger(draft.currentIndex)
-          ? Math.min(Math.max(draft.currentIndex, 0), questions.length - 1)
+          ? Math.min(Math.max(draft.currentIndex, 0), maxIndex)
           : 0
       );
     } else {
@@ -157,20 +223,20 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
 
     setResult(null);
     setDraftLoaded(true);
-  }, [topic.id, questions.length]);
+  }, [topicId, quizQuestions.length]);
 
   useEffect(() => {
     if (!draftLoaded || result) {
       return;
     }
 
-    saveQuizDraft(topic.id, {
+    saveQuizDraft(topicId, {
       selectedAnswers,
       skippedQuestions,
       currentIndex,
       updatedAt: Date.now()
     });
-  }, [currentIndex, draftLoaded, result, selectedAnswers, skippedQuestions, topic.id]);
+  }, [currentIndex, draftLoaded, result, selectedAnswers, skippedQuestions, topicId]);
 
   function selectAnswer(questionId, optionIndex) {
     setSelectedAnswers((current) => ({
@@ -199,23 +265,25 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
       [currentQuestion.id]: true
     }));
 
-    if (currentIndex < questions.length - 1) {
+    if (currentIndex < quizQuestions.length - 1) {
       setCurrentIndex((index) => index + 1);
     }
   }
 
   function submitQuiz() {
-    const nextResult = calculateResult(questions, selectedAnswers, skippedQuestions);
+    const nextResult = calculateResult(quizQuestions, selectedAnswers, skippedQuestions);
     setResult(nextResult);
-    clearQuizDraft(topic.id);
+    clearQuizDraft(topicId);
 
     const progress = loadProgress();
     const completedTopics = new Set(progress.completedTopics ?? []);
     const visitedTopics = new Set(progress.visitedTopics ?? []);
-    completedTopics.add(topic.id);
-    visitedTopics.add(topic.id);
+    if (topicId) {
+      completedTopics.add(topicId);
+      visitedTopics.add(topicId);
+    }
 
-    const previousBest = progress.bestScores?.[topic.id] ?? 0;
+    const previousBest = progress.bestScores?.[topicId] ?? 0;
     const nextBest = Math.max(previousBest, nextResult.correct);
 
     const nextProgress = {
@@ -223,13 +291,13 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
       completedTopics: Array.from(completedTopics),
       bestScores: {
         ...(progress.bestScores ?? {}),
-        [topic.id]: nextBest
+        [topicId]: nextBest
       },
       attempts: {
         ...(progress.attempts ?? {}),
-        [topic.id]: (progress.attempts?.[topic.id] ?? 0) + 1
+        [topicId]: (progress.attempts?.[topicId] ?? 0) + 1
       },
-      lastVisitedTopic: topic.id,
+      lastVisitedTopic: topicId || progress.lastVisitedTopic,
       visitedTopics: Array.from(visitedTopics)
     };
 
@@ -242,15 +310,25 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
     setSkippedQuestions({});
     setCurrentIndex(0);
     setResult(null);
-    clearQuizDraft(topic.id);
+    clearQuizDraft(topicId);
   }
 
-  if (!questions.length) {
+  if (!quizQuestions.length) {
     return (
       <section className="quiz-empty">
         <h2>Quiz coming soon</h2>
-        <p>This topic is in the content queue. Start with the available Python Variables quiz.</p>
-        <a className="button button--primary" href="/quizzes/python-variables">Open Python Variables Quiz</a>
+        <p>This topic is in the content queue. Start with the available lessons for this course.</p>
+        <a className="button button--primary" href={courseUrl}>Open course</a>
+      </section>
+    );
+  }
+
+  if (!currentQuestion) {
+    return (
+      <section className="quiz-empty">
+        <h2>Preparing quiz</h2>
+        <p>The quiz is resetting its saved position. Please reload this page if it does not appear.</p>
+        <a className="button button--primary" href={courseUrl}>Open course</a>
       </section>
     );
   }
@@ -273,8 +351,8 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
           )}
           <div className="button-row">
             <button className="button button--primary" type="button" onClick={retryQuiz}>Retry quiz</button>
-            <a className="button button--ghost" href={nextTopic?.contentUrl ?? "/python"}>
-              {nextTopic ? `Next: ${nextTopic.title}` : "Back to Python topics"}
+            <a className="button button--ghost" href={nextTopic?.contentUrl ?? courseUrl}>
+              {nextTopic ? `Next: ${nextTopic.title}` : `Back to ${subjectName} topics`}
             </a>
           </div>
         </div>
@@ -325,11 +403,11 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
     <section className="quiz-app" aria-labelledby="quiz-title">
       <div className="quiz-app__topline">
         <div>
-          <p className="eyebrow">Question {currentIndex + 1} of {questions.length}</p>
-          <h2 id="quiz-title">{topic.title} Quiz</h2>
+          <p className="eyebrow">Question {currentIndex + 1} of {quizQuestions.length}</p>
+          <h2 id="quiz-title">{topicTitle} Quiz</h2>
         </div>
         {bestScore !== null && (
-          <p className="best-score">Best: {bestScore}/{questions.length}</p>
+          <p className="best-score">Best: {bestScore}/{quizQuestions.length}</p>
         )}
       </div>
 
@@ -370,7 +448,7 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
           Previous
         </button>
 
-        {currentIndex < questions.length - 1 ? (
+        {currentIndex < quizQuestions.length - 1 ? (
           <div className="quiz-controls__forward">
             <button
               className="button button--ghost"
@@ -384,7 +462,7 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
               className="button button--primary"
               type="button"
               disabled={!currentCompleted}
-              onClick={() => setCurrentIndex((index) => Math.min(questions.length - 1, index + 1))}
+              onClick={() => setCurrentIndex((index) => Math.min(quizQuestions.length - 1, index + 1))}
             >
               Next
             </button>

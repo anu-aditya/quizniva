@@ -4,44 +4,51 @@ import CourseProgress from "../components/CourseProgress.astro";
 import HomePreview from "../components/HomePreview.astro";
 import TopicCard from "../components/TopicCard.astro";
 import topics from "../data/topics.json";
+import {
+  computerFundamentalsLessons,
+  computerFundamentalsTopicGroups
+} from "../data/computerFundamentalsCourse.js";
 
 const sortedTopics = [...topics].sort((a, b) => a.order - b.order);
-const readyTopics = sortedTopics.filter((topic) => topic.status === "ready");
+const pythonTopics = sortedTopics.filter((topic) => topic.subject === "Python");
+const readyTopics = pythonTopics.filter((topic) => topic.status === "ready");
 const beginnerTopics = readyTopics.filter((topic) => topic.difficulty === "Beginner");
 const intermediateTopics = readyTopics.filter((topic) => topic.difficulty === "Intermediate");
 const advancedTopics = readyTopics.filter((topic) => topic.difficulty === "Advanced");
-const plannedTopics = sortedTopics.filter((topic) => topic.status !== "ready");
+const plannedTopics = pythonTopics.filter((topic) => topic.status !== "ready");
 const beginnerStart = beginnerTopics[0];
 const intermediateStart = intermediateTopics[0];
 const advancedStart = advancedTopics[0];
+const computerStart = computerFundamentalsLessons[0];
+const computerQuestionCount = computerFundamentalsLessons.reduce((total, lesson) => total + lesson.questionCount, 0);
 ---
 
 <BaseLayout
   title="QuizNiva"
-  description="Free Python beginner, intermediate, and advanced notes, MCQ quizzes, answer explanations, and progress-friendly practice."
+  description="Free programming and computer fundamentals notes, MCQ quizzes, answer explanations, and progress-friendly practice."
 >
   <section class="home-hero section">
     <div class="home-hero__copy">
-      <p class="eyebrow">Python practice path</p>
+      <p class="eyebrow">Focused study paths</p>
       <h1>QuizNiva</h1>
       <p>
-        Move from beginner Python foundations into intermediate patterns and advanced concepts with notes, focused MCQs, and answer explanations.
+        Build practical foundations with Python lessons and Computer Fundamentals notes, then lock in each topic with focused MCQs and answer explanations.
       </p>
       <div class="button-row">
         <a class="button button--primary" href="/python/variables" data-progress-continue-link>Start Python Variables</a>
-        <a class="button button--ghost" href="/python">View course</a>
+        <a class="button button--ghost" href="/computer-fundamentals">Computer fundamentals</a>
       </div>
     </div>
     <HomePreview />
   </section>
 
-  <CourseProgress topics={readyTopics} />
+  <CourseProgress topics={readyTopics} subjectName="Python" courseUrl="/python" />
 
   <section class="section section--tight" aria-labelledby="ready-title">
     <div class="section-heading">
       <p class="eyebrow">Study paths</p>
-      <h2 id="ready-title">Choose Your Python Level</h2>
-      <p>Start with foundations, jump into intermediate practice, or sharpen advanced Python skills. The full lesson list lives on the Python course page.</p>
+      <h2 id="ready-title">Choose Your Next Course</h2>
+      <p>Start with foundations, jump into intermediate practice, sharpen advanced Python skills, or build the computer basics that support every technical path.</p>
     </div>
 
     <div class="course-level-grid">
@@ -84,6 +91,21 @@ const advancedStart = advancedTopics[0];
         <div class="course-level-card__actions">
           <a class="button button--primary" href={advancedStart?.contentUrl ?? "/python"}>Start advanced</a>
           <a class="button button--ghost" href="/python">View syllabus</a>
+        </div>
+      </article>
+
+      <article class="course-level-card">
+        <p class="eyebrow">Computer Fundamentals</p>
+        <h3>Core Computer Basics</h3>
+        <p>9 topic groups covering hardware, CPU, RAM, storage, operating systems, internet, binary, networking, and cybersecurity.</p>
+        <div class="course-level-card__meta">
+          <span>{computerFundamentalsTopicGroups.length} topics</span>
+          <span>{computerFundamentalsLessons.length} lessons</span>
+          <span>{computerQuestionCount} MCQs</span>
+        </div>
+        <div class="course-level-card__actions">
+          <a class="button button--primary" href={computerStart?.contentUrl ?? "/computer-fundamentals"}>Start fundamentals</a>
+          <a class="button button--ghost" href="/computer-fundamentals">View syllabus</a>
         </div>
       </article>
     </div>

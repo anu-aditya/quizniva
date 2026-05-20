@@ -15,6 +15,7 @@ export async function getStaticPaths() {
 const { page } = Astro.props;
 const { Content } = page;
 const topic = topics.find((item) => item.id === page.frontmatter.topicId);
+const subjectTopics = topics.filter((item) => item.subject === "Python");
 
 if (!topic) {
   throw new Error(`Missing topic metadata for ${page.frontmatter.topicId}`);
@@ -26,7 +27,7 @@ if (!topic) {
   description={page.frontmatter.description}
   currentPath={topic.contentUrl}
 >
-  <TopicLayout topic={topic} topics={topics}>
+  <TopicLayout topic={topic} topics={subjectTopics}>
     <Content />
   </TopicLayout>
 </BaseLayout>

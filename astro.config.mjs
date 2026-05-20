@@ -3,6 +3,6 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://quizniva.github.io",
+  site: "https://quizniva.in",
   integrations: [react(), sitemap()]
 });
