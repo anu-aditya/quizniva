@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import topics from "../data/topics.json";
+import {
+  computerFundamentalsTopicGroups,
+  computerFundamentalsLessons
+} from "../data/computerFundamentalsCourse.js";
+import { staticPages } from "../data/siteInfo.js";
+
+const mainPages = staticPages.filter((page) => page.path !== "/sitemap");
+const pythonTopics = topics.filter((topic) => topic.subject === "Python").sort((a, b) => a.order - b.order);
+const pythonQuizzes = pythonTopics.map((topic) => ({
+  title: `${topic.title} Quiz`,
+  path: topic.quizUrl
+}));
+const computerQuizzes = computerFundamentalsLessons.map((lesson) => ({
+  title: `${lesson.title} Quiz`,
+  path: lesson.quizUrl
+}));
+---
+
+<BaseLayout
+  title="HTML Sitemap"
+  description="Find every major QuizNiva page, lesson, and quiz from one accessible sitemap."
+  currentPath="/sitemap"
+>
+  <section class="page-intro section">
+    <p class="eyebrow">Sitemap</p>
+    <h1>Find Every QuizNiva Page</h1>
+    <p>Use this human-readable sitemap to reach the main pages, courses, lessons, and quizzes without relying on search.</p>
+  </section>
+
+  <section class="section sitemap-page">
+    <div class="sitemap-column">
+      <h2>Main Pages</h2>
+      <ul class="sitemap-list">
+        {mainPages.map((page) => (
+          <li>
+            <a class="text-link" href={page.path}>{page.title}</a>
+            <p>{page.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="sitemap-column">
+      <h2>Python Lessons</h2>
+      <ol class="sitemap-list">
+        {pythonTopics.map((topic) => (
+          <li>
+            <a class="text-link" href={topic.contentUrl}>{topic.title}</a>
+            <p>{topic.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="sitemap-column">
+      <h2>Computer Fundamentals Lessons</h2>
+      {computerFundamentalsTopicGroups.map((group) => (
+        <section class="sitemap-group" aria-labelledby={`${group.slug}-sitemap-title`}>
+          <h3 id={`${group.slug}-sitemap-title`}>{group.title}</h3>
+          <ol class="sitemap-list">
+            {group.lessons.map((lesson) => (
+              <li>
+                <a class="text-link" href={lesson.contentUrl}>{lesson.title}</a>
+                <p>{lesson.description}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </div>
+
+    <div class="sitemap-column">
+      <h2>Quizzes</h2>
+      <ul class="sitemap-list sitemap-list--compact">
+        {[...pythonQuizzes, ...computerQuizzes].map((quiz) => (
+          <li><a class="text-link" href={quiz.path}>{quiz.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

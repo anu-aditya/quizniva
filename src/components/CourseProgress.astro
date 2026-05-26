@@ -1,6 +1,13 @@
 ---
 const { topics = [], subjectName = "Python", courseUrl = "/python" } = Astro.props;
 const firstTopic = topics[0] ?? null;
+const progressTopics = topics.map((topic) => ({
+  id: topic.id,
+  title: topic.title,
+  contentUrl: topic.contentUrl,
+  quizUrl: topic.quizUrl,
+  questionCount: topic.questionCount ?? 20
+}));
 ---
 
 <section class="progress-panel" data-progress-panel aria-live="polite">
@@ -27,7 +34,7 @@ const firstTopic = topics[0] ?? null;
   </div>
 </section>
 
-<script define:vars={{ courseTopics: topics, subjectName }}>
+<script define:vars={{ courseTopics: progressTopics, subjectName }}>
   const STORAGE_KEY = "quizNivaProgress";
   const DRAFT_STORAGE_KEY = "quizNivaQuizDrafts";
   const topicsById = new Map(courseTopics.map((topic) => [topic.id, topic]));

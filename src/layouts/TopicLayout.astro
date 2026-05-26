@@ -1,5 +1,6 @@
 ---
 import RelatedTopics from "../components/RelatedTopics.astro";
+import { siteInfo, trustedReferences } from "../data/siteInfo.js";
 
 const { topic, topics } = Astro.props;
 const courseUrl = `/${topic.contentUrl.split("/").filter(Boolean)[0]}`;
@@ -8,13 +9,31 @@ const lessonLabel = topic.subject === "Computer Fundamentals"
   ? `Computer Fundamentals Topic ${topic.topicGroupOrder}: ${topic.topicGroup} - Lesson ${topic.lessonOrder}`
   : `${topic.subject} ${topic.difficulty} Lesson ${topic.order}`;
 const detailLabel = topic.subject === "Computer Fundamentals" ? "Topic" : "Level";
+const referenceLinks = trustedReferences[topic.subject] ?? [];
+const topicName = topic.title.replace(/^Python\s+/i, "");
+const subjectStudyNote = topic.subject === "Python"
+  ? "Read the examples slowly, then rewrite one of them in your own editor. Python topics become easier when you compare the exact code with the output and explain each line aloud before taking the quiz."
+  : "Connect each definition to a real device or daily computing task. Computer fundamentals are easier to remember when you can point to the part, setting, network step, or safety habit being described.";
 ---
 
 <article class="topic-article">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href={courseUrl}>{topic.subject}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{topic.title}</span>
+  </nav>
+
   <header class="topic-header">
     <p class="eyebrow">{lessonLabel}</p>
     <h1>{topic.title}</h1>
     <p>{topic.description}</p>
+    <p class="topic-byline">
+      By <a class="text-link" href={siteInfo.ownerPath} rel="author">{siteInfo.ownerName}</a>
+      <span aria-hidden="true">&middot;</span>
+      Reviewed <time datetime={siteInfo.lastReviewedDate}>{siteInfo.lastReviewedLabel}</time>
+    </p>
     <div class="topic-header__actions">
       <a class="button button--primary" href={topic.quizUrl}>Start quiz</a>
       <a class="button button--ghost" href={courseUrl}>Course index</a>
@@ -24,6 +43,25 @@ const detailLabel = topic.subject === "Computer Fundamentals" ? "Topic" : "Level
   <div class="content-grid">
     <div class="prose">
       <slot />
+
+      <section class="topic-study-guide" aria-labelledby={`${topic.id}-study-guide`}>
+        <h2 id={`${topic.id}-study-guide`}>Study Guide For {topicName}</h2>
+        <p>
+          Treat this lesson as a practical checkpoint, not a page to memorize once. First, identify the main idea in your own words. Then connect that idea to the examples above, the common mistake it prevents, and the kind of question it can produce in a quiz or classroom exercise. This makes the lesson useful even when the wording of a future question changes.
+        </p>
+        <p>
+          {subjectStudyNote} If a term feels unclear, pause before the quiz and write a one-sentence definition with a small example. That habit exposes gaps quickly and keeps practice from becoming guesswork.
+        </p>
+        <ul>
+          <li>Review the heading order and make sure you can explain what each section adds to the topic.</li>
+          <li>Use the quiz as a diagnostic tool: missed answers show which paragraph or example needs another pass.</li>
+          <li>After submitting the quiz, read every explanation, including the ones you answered correctly.</li>
+          <li>Return to this page a day later and retake the quiz without looking at the notes first.</li>
+        </ul>
+        <p>
+          A strong result is not only a high score. It is the ability to explain why the correct answer is right, why the close alternatives are wrong, and where the idea appears in real study or work. QuizNiva keeps the lesson, practice questions, and explanations together so you can move between reading and testing without losing context.
+        </p>
+      </section>
     </div>
 
     <aside class="study-sidebar" aria-label="Topic details">
@@ -44,6 +82,19 @@ const detailLabel = topic.subject === "Computer Fundamentals" ? "Topic" : "Level
           </div>
         </dl>
       </div>
+
+      {referenceLinks.length > 0 && (
+        <div class="sidebar-block">
+          <h2>Trusted References</h2>
+          <ul class="reference-list">
+            {referenceLinks.map((link) => (
+              <li>
+                <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </aside>
   </div>
 

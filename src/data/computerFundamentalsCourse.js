@@ -932,7 +932,7 @@ const lessonDeepDives = {
     {
       heading: "Capacity, Free Space, And File Types",
       body: [
-        "Capacity tells how much data a storage device can hold. Text files are usually tiny. Photos are larger. Videos, games, virtual machines, and software development tools can be very large.",
+        "Capacity tells how much data a storage device can hold. Text files are usually tiny. Photos are larger. Videos, games, virtual machines, and programming tools can be very large.",
         "Free space also matters. Operating systems and apps often need room for updates, temporary files, caches, and downloads. A nearly full drive can cause warnings, failed updates, or slower behavior."
       ],
       bullets: [

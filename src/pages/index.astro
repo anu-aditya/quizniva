@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CourseProgress from "../components/CourseProgress.astro";
 import HomePreview from "../components/HomePreview.astro";
-import TopicCard from "../components/TopicCard.astro";
 import topics from "../data/topics.json";
 import {
   computerFundamentalsLessons,
@@ -15,7 +14,6 @@ const readyTopics = pythonTopics.filter((topic) => topic.status === "ready");
 const beginnerTopics = readyTopics.filter((topic) => topic.difficulty === "Beginner");
 const intermediateTopics = readyTopics.filter((topic) => topic.difficulty === "Intermediate");
 const advancedTopics = readyTopics.filter((topic) => topic.difficulty === "Advanced");
-const plannedTopics = pythonTopics.filter((topic) => topic.status !== "ready");
 const beginnerStart = beginnerTopics[0];
 const intermediateStart = intermediateTopics[0];
 const advancedStart = advancedTopics[0];
@@ -42,7 +40,49 @@ const computerQuestionCount = computerFundamentalsLessons.reduce((total, lesson)
     <HomePreview />
   </section>
 
+  <section class="section section--tight home-content" aria-labelledby="home-quality-title">
+    <div class="section-heading">
+      <p class="eyebrow">How QuizNiva Teaches</p>
+      <h2 id="home-quality-title">Clear Notes, Focused Practice, And Reviewable Explanations</h2>
+      <p>
+        QuizNiva is built for learners who want steady progress without turning every study session into a search project. Each lesson starts with the core idea, shows the vocabulary that matters, and connects the topic to short examples or everyday computer tasks. The goal is not to overwhelm you with every possible detail at once. The goal is to give you enough context to answer questions with understanding, then make it easy to revisit the exact part that needs more practice.
+      </p>
+    </div>
+
+    <div class="home-content__grid">
+      <div class="prose">
+        <h3>What You Can Expect From A Lesson</h3>
+        <p>
+          A useful beginner lesson should explain more than a definition. When you study Python variables, for example, you should learn what a name represents, how assignment works, why reassignment is normal, and which mistakes usually confuse new programmers. When you study computer hardware, you should be able to separate input, processing, memory, storage, and output in a real device. That is why QuizNiva pairs short notes with examples, summaries, and quiz questions that test the same idea from more than one angle.
+        </p>
+        <p>
+          The quizzes are designed as practice checks, not traps. After you submit an answer, the explanation shows why the correct option fits and why the distractors do not. That feedback loop matters because many learners can recognize a term but cannot yet explain it. Reviewing the explanation turns a score into a study map: correct answers show what is stable, while missed answers show where to reread.
+        </p>
+      </div>
+
+      <div class="prose">
+        <h3>Why The Site Covers Both Code And Fundamentals</h3>
+        <p>
+          Programming is easier when the basic computer ideas underneath it are familiar. Python teaches problem solving, data handling, control flow, functions, and reusable code. Computer Fundamentals explains the machine and network concepts learners meet in school, office work, exams, and daily troubleshooting. Studying both paths together helps you understand not just what code does, but where data is stored, how a browser reaches a website, why memory limits matter, and how safer account habits reduce risk.
+        </p>
+        <p>
+          New pages are added only when the lesson and quiz explanations are ready together. That keeps the site useful for repeated revision: you can read, practice, check explanations, and move to the next topic without jumping between unrelated sources. The content is reviewed for clarity, updated as the site grows, and open to correction through the contact page.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <CourseProgress topics={readyTopics} subjectName="Python" courseUrl="/python" />
+
+  <section class="section section--muted" aria-labelledby="home-study-title">
+    <div class="section-heading">
+      <p class="eyebrow">Study Method</p>
+      <h2 id="home-study-title">A Simple Loop For Better Retention</h2>
+      <p>
+        Start with one lesson, answer the quiz without checking the notes, review every explanation, then revisit the lesson section that caused mistakes. A day later, retake the quiz and explain the corrected answers in your own words. This small loop is more reliable than rushing through many topics because it makes weak areas visible while the lesson is still easy to find.
+      </p>
+    </div>
+  </section>
 
   <section class="section section--tight" aria-labelledby="ready-title">
     <div class="section-heading">
@@ -110,18 +150,4 @@ const computerQuestionCount = computerFundamentalsLessons.reduce((total, lesson)
       </article>
     </div>
   </section>
-
-  {plannedTopics.length > 0 && (
-    <section class="section section--muted" aria-labelledby="roadmap-title">
-      <div class="section-heading">
-        <p class="eyebrow">Build queue</p>
-        <h2 id="roadmap-title">Python Beginner Roadmap</h2>
-        <p>These topics are planned next. We will add each only after its notes and quiz explanations are ready.</p>
-      </div>
-
-      <div class="topic-grid">
-        {plannedTopics.map((topic) => <TopicCard topic={topic} />)}
-      </div>
-    </section>
-  )}
 </BaseLayout>

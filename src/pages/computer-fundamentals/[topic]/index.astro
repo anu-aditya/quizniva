@@ -30,6 +30,51 @@ const firstLesson = group.lessons[0];
     </div>
   </section>
 
+  <section class="section section--tight" aria-labelledby="topic-overview-title">
+    <div class="section-heading">
+      <p class="eyebrow">Topic Overview</p>
+      <h2 id="topic-overview-title">What You Will Learn In {group.title}</h2>
+      <p>
+        This topic group gives you a practical foundation before you start the individual lessons. Instead of memorizing isolated terms, use this page to understand how the ideas in {group.title} connect to real computer use, troubleshooting, school exams, and safer everyday technology habits.
+      </p>
+    </div>
+
+    <div class="home-content__grid">
+      <div class="prose">
+        <h3>Why This Topic Matters</h3>
+        <p>
+          Computer fundamentals are easier to remember when each concept is tied to a real situation. A learner who understands {group.title.toLowerCase()} can read a question more carefully, separate similar terms, and explain why one answer fits better than another. That matters for MCQ practice because wrong options are often close to the correct answer. The notes in this section are meant to build that judgment step by step.
+        </p>
+        <p>
+          Start by reading the first lesson without rushing to the quiz. Identify the main term, the role it plays in a computer system, and one example from daily use. Then take the quiz and compare every answer explanation with the lesson text. If an explanation feels surprising, return to the matching paragraph and rewrite the idea in your own words.
+        </p>
+      </div>
+
+      <div class="prose">
+        <h3>How The Lessons Fit Together</h3>
+        <p>
+          Each lesson in this group focuses on a smaller part of the topic. The first lesson usually introduces the core idea, while the second lesson adds practical detail, comparison, or common mistakes. Studying them together helps you move from recognition to explanation: you should be able to define the term, pick the correct option in a quiz, and describe why the concept matters outside the page.
+        </p>
+        <p>
+          Use the progress panel as a checklist, not a race. Complete one lesson, attempt its quiz, review the explanations, and then continue. This rhythm keeps the material manageable and makes your weak spots visible before you move to the next topic group.
+        </p>
+      </div>
+    </div>
+
+    <div class="prose prose--standalone">
+      <h3>Before You Move To The Next Topic</h3>
+      <p>
+        Use this short checklist after finishing the lessons in {group.title}. You are ready to continue when you can explain the key terms without copying the page, answer the quizzes with confidence, and connect the ideas to a real computer, phone, browser, network, or account safety situation. If you can only remember the wording of an answer but cannot explain why it is correct, review the lesson again before moving on. Good fundamentals should feel useful in conversation, troubleshooting, homework, classroom study, practical tasks, and exam revision.
+      </p>
+      <ul>
+        <li>Name the main parts, steps, or rules covered in this topic group.</li>
+        <li>Give one practical example for each lesson in your own words.</li>
+        <li>Retake any quiz where the explanation corrected a misunderstanding.</li>
+        <li>Use the course index to return later for spaced revision.</li>
+      </ul>
+    </div>
+  </section>
+
   <CourseProgress topics={group.lessons} subjectName={group.title} courseUrl={group.contentUrl} />
 
   <section class="section section--muted course-index" aria-labelledby="topic-lessons-title">

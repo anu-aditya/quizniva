@@ -316,8 +316,8 @@ export default function QuizComponent({ topic, questions, nextTopic = null }) {
   if (!quizQuestions.length) {
     return (
       <section className="quiz-empty">
-        <h2>Quiz coming soon</h2>
-        <p>This topic is in the content queue. Start with the available lessons for this course.</p>
+        <h2>Quiz temporarily unavailable</h2>
+        <p>The lesson is available, but this quiz could not be loaded. Open the course index and choose another practice set.</p>
         <a className="button button--primary" href={courseUrl}>Open course</a>
       </section>
     );

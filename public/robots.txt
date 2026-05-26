@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://quizniva.in/sitemap.xml
 Sitemap: https://quizniva.in/sitemap-index.xml

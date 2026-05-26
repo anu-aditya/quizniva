@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import topics from "../data/topics.json";
+import {
+  computerFundamentalsLessons,
+  computerFundamentalsTopicGroups
+} from "../data/computerFundamentalsCourse.js";
+import { staticPages } from "../data/siteInfo.js";
+
+const pageItems = staticPages
+  .filter((page) => !["/search", "/sitemap"].includes(page.path))
+  .map((page) => ({
+    title: page.title,
+    description: page.description,
+    url: page.path,
+    type: "Page"
+  }));
+
+const lessonItems = [...topics, ...computerFundamentalsLessons].map((topic) => ({
+  title: topic.title,
+  description: topic.description,
+  url: topic.contentUrl,
+  type: topic.subject
+}));
+
+const quizItems = [...topics, ...computerFundamentalsLessons].map((topic) => ({
+  title: `${topic.title} Quiz`,
+  description: `Practice ${topic.title} with MCQs and answer explanations.`,
+  url: topic.quizUrl,
+  type: "Quiz"
+}));
+
+const groupItems = computerFundamentalsTopicGroups.map((group) => ({
+  title: group.title,
+  description: group.description,
+  url: group.contentUrl,
+  type: "Computer Fundamentals Topic"
+}));
+
+const searchItems = [...pageItems, ...groupItems, ...lessonItems, ...quizItems];
+---
+
+<BaseLayout
+  title="Search"
+  description="Search QuizNiva lessons, quizzes, and study pages."
+  currentPath="/search"
+>
+  <section class="page-intro section">
+    <p class="eyebrow">Search</p>
+    <h1>Search Lessons And Quizzes</h1>
+    <p>Find a topic, course page, quiz, privacy page, or study reference from one place.</p>
+  </section>
+
+  <section class="section search-page" aria-labelledby="site-search-title">
+    <h2 id="site-search-title">Site Search</h2>
+    <form class="search-form" role="search">
+      <label class="search-form__label" for="site-search">Search QuizNiva</label>
+      <input
+        id="site-search"
+        name="q"
+        type="search"
+        autocomplete="off"
+        placeholder="Try variables, RAM, cybersecurity, privacy..."
+        data-search-input
+      />
+    </form>
+    <p class="muted" data-search-count>{searchItems.length} pages available.</p>
+    <div class="search-results" data-search-results>
+      {searchItems.slice(0, 12).map((item) => (
+        <a class="search-result" href={item.url}>
+          <span>{item.type}</span>
+          <strong>{item.title}</strong>
+          <small>{item.description}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <script define:vars={{ searchItems }}>
+    const input = document.querySelector("[data-search-input]");
+    const results = document.querySelector("[data-search-results]");
+    const count = document.querySelector("[data-search-count]");
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get("q") ?? "";
+
+    function normalize(value) {
+      return value.toLowerCase().trim();
+    }
+
+    function scoreItem(item, query) {
+      const title = normalize(item.title);
+      const description = normalize(item.description);
+      const type = normalize(item.type);
+
+      if (title === query) {
+        return 100;
+      }
+
+      if (title.includes(query)) {
+        return 80;
+      }
+
+      if (type.includes(query)) {
+        return 60;
+      }
+
+      if (description.includes(query)) {
+        return 40;
+      }
+
+      return 0;
+    }
+
+    function render(query) {
+      if (!(results instanceof HTMLElement) || !(count instanceof HTMLElement)) {
+        return;
+      }
+
+      const normalizedQuery = normalize(query);
+      const matches = normalizedQuery
+        ? searchItems
+            .map((item) => ({ item, score: scoreItem(item, normalizedQuery) }))
+            .filter((entry) => entry.score > 0)
+            .sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title))
+            .map((entry) => entry.item)
+        : searchItems.slice(0, 12);
+
+      count.textContent = normalizedQuery
+        ? `${matches.length} result${matches.length === 1 ? "" : "s"} found.`
+        : `${searchItems.length} pages available.`;
+
+      results.replaceChildren(
+        ...matches.slice(0, 24).map((item) => {
+          const link = document.createElement("a");
+          const type = document.createElement("span");
+          const title = document.createElement("strong");
+          const description = document.createElement("small");
+
+          link.className = "search-result";
+          link.href = item.url;
+          type.textContent = item.type;
+          title.textContent = item.title;
+          description.textContent = item.description;
+          link.append(type, title, description);
+          return link;
+        })
+      );
+    }
+
+    if (input instanceof HTMLInputElement) {
+      input.value = initialQuery;
+      render(initialQuery);
+      input.addEventListener("input", () => render(input.value));
+    }
+  </script>
+</BaseLayout>

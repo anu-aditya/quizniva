@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import TopicLayout from "../../../layouts/TopicLayout.astro";
+import { siteInfo, toAbsoluteUrl } from "../../../data/siteInfo.js";
 import {
   computerFundamentalsLessons,
   computerFundamentalsTopicGroups
@@ -16,12 +17,35 @@ export function getStaticPaths() {
 }
 
 const { lesson } = Astro.props;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: lesson.title,
+    description: lesson.description,
+    mainEntityOfPage: toAbsoluteUrl(lesson.contentUrl),
+    dateModified: siteInfo.lastReviewedDate,
+    author: {
+      "@type": "Organization",
+      name: siteInfo.ownerName,
+      url: toAbsoluteUrl(siteInfo.ownerPath)
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteInfo.name,
+      url: siteInfo.url
+    },
+    about: lesson.title,
+    educationalLevel: lesson.difficulty
+  }
+];
 ---
 
 <BaseLayout
   title={lesson.title}
   description={lesson.description}
   currentPath={lesson.contentUrl}
+  structuredData={structuredData}
 >
   <TopicLayout topic={lesson} topics={computerFundamentalsLessons}>
     {lesson.sections.map((section) => (

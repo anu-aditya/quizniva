@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import QuizComponent from "../../components/QuizComponent.jsx";
+import { siteInfo, toAbsoluteUrl } from "../../data/siteInfo.js";
 import beginnerQuestions from "../../data/questions.json";
 import intermediateQuestions from "../../data/intermediateQuestions.js";
 import advancedQuestions from "../../data/advancedQuestions.js";
@@ -35,12 +36,31 @@ const allTopics = [...topics, ...computerFundamentalsLessons];
 const nextTopic = allTopics
   .filter((item) => item.status === "ready" && item.subject === topic.subject && item.order > topic.order)
   .sort((a, b) => a.order - b.order)[0] ?? null;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: `${topic.title} Quiz`,
+    description: `Practice ${topic.title} with MCQs, score calculation, and answer explanations.`,
+    url: toAbsoluteUrl(topic.quizUrl),
+    dateModified: siteInfo.lastReviewedDate,
+    educationalUse: "practice quiz",
+    learningResourceType: "quiz",
+    about: topic.title,
+    publisher: {
+      "@type": "Organization",
+      name: siteInfo.name,
+      url: siteInfo.url
+    }
+  }
+];
 ---
 
 <BaseLayout
   title={`${topic.title} Quiz`}
   description={`Practice ${topic.title} with MCQs, score calculation, and answer explanations.`}
   currentPath={topic.quizUrl}
+  structuredData={structuredData}
 >
   <section class="quiz-page section">
     <div class="quiz-page__intro">

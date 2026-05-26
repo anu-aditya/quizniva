@@ -1,15 +1,41 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { siteInfo, toAbsoluteUrl } from "../data/siteInfo.js";
 import "../styles/global.css";
 
 const {
   title = "QuizNiva",
   description = "Free beginner-friendly study notes, MCQ quizzes, and answer explanations.",
-  currentPath = Astro.url.pathname
+  currentPath = Astro.url.pathname,
+  canonicalPath = currentPath,
+  structuredData = []
 } = Astro.props;
 
 const pageTitle = title === "QuizNiva" ? title : `${title} | QuizNiva`;
+const canonicalUrl = toAbsoluteUrl(canonicalPath);
+const baseStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteInfo.name,
+    url: siteInfo.url,
+    email: siteInfo.email,
+    logo: toAbsoluteUrl("/favicon.svg")
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteInfo.name,
+    url: siteInfo.url,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${siteInfo.url}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  }
+];
+const allStructuredData = [...baseStructuredData, ...structuredData];
 ---
 
 <!doctype html>
@@ -19,11 +45,23 @@ const pageTitle = title === "QuizNiva" ? title : `${title} | QuizNiva`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={siteInfo.ownerName} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#102a2a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteInfo.name} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {allStructuredData.map((entry) => (
+      <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
     <script is:inline>
       (() => {
         const storageKey = "quizNivaTheme";
@@ -45,8 +83,6 @@ const pageTitle = title === "QuizNiva" ? title : `${title} | QuizNiva`;
         }
       })();
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7914585052469262"
-     crossorigin="anonymous"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -55,5 +91,70 @@ const pageTitle = title === "QuizNiva" ? title : `${title} | QuizNiva`;
       <slot />
     </main>
     <Footer />
+    <section class="cookie-consent" data-cookie-banner role="region" aria-label="Privacy choices" hidden>
+      <div class="cookie-consent__copy">
+        <h2>Privacy Choices</h2>
+        <p>
+          QuizNiva uses essential browser storage for quiz progress. Advertising cookies and similar technologies are loaded only if you accept them.
+        </p>
+      </div>
+      <div class="cookie-consent__actions">
+        <button class="button button--ghost" type="button" data-cookie-reject>Reject</button>
+        <button class="button button--primary" type="button" data-cookie-accept>Accept</button>
+      </div>
+    </section>
+    <script define:vars={{ adsenseClient: siteInfo.adsenseClient }}>
+      (() => {
+        const consentKey = "quizNivaCookieConsent";
+        const banner = document.querySelector("[data-cookie-banner]");
+        const acceptButton = document.querySelector("[data-cookie-accept]");
+        const rejectButton = document.querySelector("[data-cookie-reject]");
+
+        function loadAdsense() {
+          if (document.querySelector("script[data-adsense-loader]")) {
+            return;
+          }
+
+          const script = document.createElement("script");
+          script.async = true;
+          script.crossOrigin = "anonymous";
+          script.dataset.adsenseLoader = "true";
+          script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseClient)}`;
+          document.head.append(script);
+        }
+
+        function saveChoice(choice) {
+          try {
+            window.localStorage.setItem(consentKey, choice);
+          } catch {
+            // Consent still applies for this page load.
+          }
+        }
+
+        let savedChoice = null;
+        try {
+          savedChoice = window.localStorage.getItem(consentKey);
+        } catch {
+          savedChoice = null;
+        }
+
+        if (savedChoice === "accepted") {
+          loadAdsense();
+        } else if (savedChoice !== "rejected") {
+          banner?.removeAttribute("hidden");
+        }
+
+        acceptButton?.addEventListener("click", () => {
+          saveChoice("accepted");
+          banner?.setAttribute("hidden", "");
+          loadAdsense();
+        });
+
+        rejectButton?.addEventListener("click", () => {
+          saveChoice("rejected");
+          banner?.setAttribute("hidden", "");
+        });
+      })();
+    </script>
   </body>
 </html>

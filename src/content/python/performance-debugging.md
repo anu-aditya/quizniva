@@ -75,7 +75,7 @@ This does not build a million-item list immediately.
 
 A common mistake is optimizing code before knowing it is slow. Another is making code harder to read for a tiny speed improvement.
 
-Also avoid logging sensitive information. Debug output should help development without exposing private data.
+Also avoid logging sensitive information. Debug output should help troubleshooting without exposing private data.
 
 ## Quick Summary
 

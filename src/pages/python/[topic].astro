@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TopicLayout from "../../layouts/TopicLayout.astro";
+import { siteInfo, toAbsoluteUrl } from "../../data/siteInfo.js";
 import topics from "../../data/topics.json";
 
 export async function getStaticPaths() {
@@ -20,12 +21,36 @@ const subjectTopics = topics.filter((item) => item.subject === "Python");
 if (!topic) {
   throw new Error(`Missing topic metadata for ${page.frontmatter.topicId}`);
 }
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: page.frontmatter.title,
+    description: page.frontmatter.description,
+    mainEntityOfPage: toAbsoluteUrl(topic.contentUrl),
+    dateModified: siteInfo.lastReviewedDate,
+    author: {
+      "@type": "Organization",
+      name: siteInfo.ownerName,
+      url: toAbsoluteUrl(siteInfo.ownerPath)
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteInfo.name,
+      url: siteInfo.url
+    },
+    about: topic.title,
+    educationalLevel: topic.difficulty
+  }
+];
 ---
 
 <BaseLayout
   title={page.frontmatter.title}
   description={page.frontmatter.description}
   currentPath={topic.contentUrl}
+  structuredData={structuredData}
 >
   <TopicLayout topic={topic} topics={subjectTopics}>
     <Content />
