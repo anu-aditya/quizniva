@@ -25,13 +25,18 @@ const pagePaths = [
 
 const uniquePaths = Array.from(new Set(pagePaths)).sort((a, b) => a.localeCompare(b));
 
+function toSitemapUrl(path: string) {
+  const normalizedPath = path === "/" || path.endsWith("/") ? path : `${path}/`;
+  return toAbsoluteUrl(normalizedPath);
+}
+
 export function GET() {
   const urls = uniquePaths
     .map((path) => {
       const priority = path === "/" ? "1.0" : path.includes("/quizzes/") ? "0.6" : "0.8";
       return [
         "  <url>",
-        `    <loc>${escapeXml(toAbsoluteUrl(path))}</loc>`,
+        `    <loc>${escapeXml(toSitemapUrl(path))}</loc>`,
         `    <lastmod>${siteInfo.lastReviewedDate}</lastmod>`,
         "    <changefreq>weekly</changefreq>",
         `    <priority>${priority}</priority>`,
