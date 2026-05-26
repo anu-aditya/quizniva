@@ -69,6 +69,27 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+    <script is:inline>
+      (() => {
+        const consentKey = "quizNivaCookieConsent";
+        let savedChoice = null;
+
+        try {
+          savedChoice = window.localStorage.getItem(consentKey);
+        } catch {
+          savedChoice = null;
+        }
+
+        window.adsbygoogle = window.adsbygoogle || [];
+        window.adsbygoogle.pauseAdRequests = savedChoice === "accepted" ? 0 : 1;
+      })();
+    </script>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7914585052469262"
+      crossorigin="anonymous"
+      data-adsense-loader
+    ></script>
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -113,7 +134,7 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
       <div class="cookie-consent__copy">
         <h2>Privacy Choices</h2>
         <p>
-          QuizNiva uses essential browser storage for quiz progress. Advertising cookies and similar technologies are loaded only if you accept them.
+          QuizNiva uses essential browser storage for quiz progress. Google AdSense is present for site review, and ad requests are enabled only if you accept them.
         </p>
       </div>
       <div class="cookie-consent__actions">
@@ -121,24 +142,16 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
         <button class="button button--primary" type="button" data-cookie-accept>Accept</button>
       </div>
     </section>
-    <script define:vars={{ adsenseClient: siteInfo.adsenseClient }}>
+    <script>
       (() => {
         const consentKey = "quizNivaCookieConsent";
         const banner = document.querySelector("[data-cookie-banner]");
         const acceptButton = document.querySelector("[data-cookie-accept]");
         const rejectButton = document.querySelector("[data-cookie-reject]");
 
-        function loadAdsense() {
-          if (document.querySelector("script[data-adsense-loader]")) {
-            return;
-          }
-
-          const script = document.createElement("script");
-          script.async = true;
-          script.crossOrigin = "anonymous";
-          script.dataset.adsenseLoader = "true";
-          script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseClient)}`;
-          document.head.append(script);
+        function setAdRequestsPaused(isPaused) {
+          window.adsbygoogle = window.adsbygoogle || [];
+          window.adsbygoogle.pauseAdRequests = isPaused ? 1 : 0;
         }
 
         function saveChoice(choice) {
@@ -156,21 +169,20 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
           savedChoice = null;
         }
 
-        if (savedChoice === "accepted") {
-          loadAdsense();
-        } else if (savedChoice !== "rejected") {
+        if (savedChoice !== "accepted" && savedChoice !== "rejected") {
           banner?.removeAttribute("hidden");
         }
 
         acceptButton?.addEventListener("click", () => {
           saveChoice("accepted");
           banner?.setAttribute("hidden", "");
-          loadAdsense();
+          setAdRequestsPaused(false);
         });
 
         rejectButton?.addEventListener("click", () => {
           saveChoice("rejected");
           banner?.setAttribute("hidden", "");
+          setAdRequestsPaused(true);
         });
       })();
     </script>
