@@ -9,6 +9,7 @@ const {
   description = "Free beginner-friendly study notes, MCQ quizzes, and answer explanations.",
   currentPath = Astro.url.pathname,
   canonicalPath = currentPath,
+  robots = "index, follow, max-image-preview:large",
   structuredData = []
 } = Astro.props;
 
@@ -46,7 +47,7 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={siteInfo.ownerName} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={robots} />
     <meta name="theme-color" content="#102a2a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonicalUrl} />
