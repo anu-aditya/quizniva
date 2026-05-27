@@ -1225,46 +1225,6 @@ button:disabled {
   min-height: 90px;
 }
 
-.cookie-consent {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 40;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1rem;
-  width: min(42rem, calc(100vw - 2rem));
-  padding: 1rem;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
-  background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
-}
-
-.cookie-consent[hidden] {
-  display: none;
-}
-
-.cookie-consent__copy h2,
-.cookie-consent__copy p {
-  margin: 0;
-}
-
-.cookie-consent__copy h2 {
-  font-size: 1.1rem;
-}
-
-.cookie-consent__copy p {
-  color: var(--color-ink-soft);
-  font-size: 0.95rem;
-}
-
-.cookie-consent__actions {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
 .search-page {
   padding-top: 2rem;
 }
@@ -1478,13 +1438,6 @@ button:disabled {
     align-items: flex-start;
   }
 
-  .cookie-consent {
-    grid-template-columns: 1fr;
-  }
-
-  .cookie-consent__actions {
-    justify-content: flex-start;
-  }
 }
 
 @media (max-width: 560px) {
@@ -1623,8 +1576,7 @@ button:disabled {
   .quiz-controls__forward,
   .button-row,
   .quiz-app__topline,
-  .review-item__header,
-  .cookie-consent__actions {
+  .review-item__header {
     align-items: stretch;
     flex-direction: column;
   }

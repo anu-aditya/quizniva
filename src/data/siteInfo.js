@@ -4,7 +4,6 @@ export const siteInfo = {
   email: "contact@quizniva.in",
   ownerName: "QuizNiva Editorial Team",
   ownerPath: "/about",
-  adsenseClient: "ca-pub-7914585052469262",
   lastReviewedDate: "2026-05-26",
   lastReviewedLabel: "May 26, 2026"
 };

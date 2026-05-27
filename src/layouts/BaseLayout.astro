@@ -68,27 +68,54 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
     <meta name="theme-color" content="#102a2a" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+    <script
+      is:inline
+      async="async"
+      data-cfasync="false"
+      src="https://pl29563357.effectivecpmnetwork.com/dbc0e9417d745153895f1cd58625adf2/invoke.js"
+    ></script>
+    <script
+      is:inline
+      src="https://pl29563412.effectivecpmnetwork.com/e1/33/6d/e1336d4aa16ea2ff6ca2bcd1fd987ec2.js"
+    ></script>
     <script is:inline>
-      (() => {
-        const consentKey = "quizNivaCookieConsent";
-        let savedChoice = null;
-
-        try {
-          savedChoice = window.localStorage.getItem(consentKey);
-        } catch {
-          savedChoice = null;
-        }
-
-        window.adsbygoogle = window.adsbygoogle || [];
-        window.adsbygoogle.pauseAdRequests = savedChoice === "accepted" ? 0 : 1;
-      })();
+      atOptions = {
+        key: "f8b1b742b3856b6d959ec7e0e095c0f9",
+        format: "iframe",
+        height: 300,
+        width: 160,
+        params: {}
+      };
     </script>
     <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7914585052469262"
-      crossorigin="anonymous"
-      data-adsense-loader
+      is:inline
+      src="https://www.highperformanceformat.com/f8b1b742b3856b6d959ec7e0e095c0f9/invoke.js"
+    ></script>
+    <script is:inline>
+      atOptions = {
+        key: "38d85b2fecda8d3c2e62e8052b88ad3e",
+        format: "iframe",
+        height: 50,
+        width: 320,
+        params: {}
+      };
+    </script>
+    <script
+      is:inline
+      src="https://www.highperformanceformat.com/38d85b2fecda8d3c2e62e8052b88ad3e/invoke.js"
+    ></script>
+    <script is:inline>
+      atOptions = {
+        key: "8351891f691ed93938671ae1d9a448af",
+        format: "iframe",
+        height: 600,
+        width: 160,
+        params: {}
+      };
+    </script>
+    <script
+      is:inline
+      src="https://www.highperformanceformat.com/8351891f691ed93938671ae1d9a448af/invoke.js"
     ></script>
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -127,64 +154,9 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
     <a class="skip-link" href="#main">Skip to content</a>
     <Header currentPath={currentPath} />
     <main id="main">
+      <div id="container-dbc0e9417d745153895f1cd58625adf2"></div>
       <slot />
     </main>
     <Footer />
-    <section class="cookie-consent" data-cookie-banner role="region" aria-label="Privacy choices" hidden>
-      <div class="cookie-consent__copy">
-        <h2>Privacy Choices</h2>
-        <p>
-          QuizNiva uses essential browser storage for quiz progress. Google AdSense is present for site review, and ad requests are enabled only if you accept them.
-        </p>
-      </div>
-      <div class="cookie-consent__actions">
-        <button class="button button--ghost" type="button" data-cookie-reject>Reject</button>
-        <button class="button button--primary" type="button" data-cookie-accept>Accept</button>
-      </div>
-    </section>
-    <script>
-      (() => {
-        const consentKey = "quizNivaCookieConsent";
-        const banner = document.querySelector("[data-cookie-banner]");
-        const acceptButton = document.querySelector("[data-cookie-accept]");
-        const rejectButton = document.querySelector("[data-cookie-reject]");
-
-        function setAdRequestsPaused(isPaused) {
-          window.adsbygoogle = window.adsbygoogle || [];
-          window.adsbygoogle.pauseAdRequests = isPaused ? 1 : 0;
-        }
-
-        function saveChoice(choice) {
-          try {
-            window.localStorage.setItem(consentKey, choice);
-          } catch {
-            // Consent still applies for this page load.
-          }
-        }
-
-        let savedChoice = null;
-        try {
-          savedChoice = window.localStorage.getItem(consentKey);
-        } catch {
-          savedChoice = null;
-        }
-
-        if (savedChoice !== "accepted" && savedChoice !== "rejected") {
-          banner?.removeAttribute("hidden");
-        }
-
-        acceptButton?.addEventListener("click", () => {
-          saveChoice("accepted");
-          banner?.setAttribute("hidden", "");
-          setAdRequestsPaused(false);
-        });
-
-        rejectButton?.addEventListener("click", () => {
-          saveChoice("rejected");
-          banner?.setAttribute("hidden", "");
-          setAdRequestsPaused(true);
-        });
-      })();
-    </script>
   </body>
 </html>
