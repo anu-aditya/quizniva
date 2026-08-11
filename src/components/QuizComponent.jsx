@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+/* @jsxRuntime classic */
+import React, { useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "quizNivaProgress";
 const DRAFT_STORAGE_KEY = "quizNivaQuizDrafts";
