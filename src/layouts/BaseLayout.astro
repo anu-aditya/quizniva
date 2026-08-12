@@ -123,10 +123,7 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header currentPath={currentPath} />
-    <main id="main">
-
-      <slot />
-        <!-- hill top ads -->
+      <!-- hill top ads -->
       <script>
       (function(xiiqa){
       var d = document,
@@ -139,6 +136,10 @@ const allStructuredData = [...baseStructuredData, ...structuredData];
       l.parentNode.insertBefore(s, l);
       })({})
       </script>
+    <main id="main">
+
+      <slot />
+      
     </main>
       
     <Footer />
